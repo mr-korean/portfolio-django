@@ -1,0 +1,25 @@
+/* base.css에서 색깔 관련 요소들만 여기로 옮겨올 것 */
+
+body {
+    background-color: #013b01;
+}
+
+.content-main {
+    background-color: #adfdad;
+}
+
+header {
+    background-color: darkgreen;
+}
+
+nav ul li a{
+    color: greenyellow;
+    background-color: green;
+    border: 1px solid greenyellow;
+}
+
+nav ul li a:hover {
+    color: green;
+    background-color: greenyellow;
+    border: 1px solid green;
+}

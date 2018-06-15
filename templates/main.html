@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block title %}홈/야바위{% endblock title %} {% load staticfiles %}
+
+{% block js %}
+<script src="{% static 'js/monte.js' %}"></script>
+{% endblock js %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <!-- 사이트 대문 : 현재는 대문과 사이트가 같은 곳에 있어서 의미가 없음. 꼭 살리고 싶다면 대문을 최대한 간소화할 것(입구 이미지만) -->
+            <div class="center-block" id="welcomeText">
+                <section>
+                    <p><span style="color: pink">(이미지 위치)</span></p>
+                    <p>안녕하십니까, 레스터입니다.</p>
+                    <p>본 사이트는 웹 프로그래머로서의 포트폴리오와,
+                        <br>번역가로서의 이력서를 표현하기 위해 제작되었습니다.
+                        <br>(상세한 이력에 관해서는, 상단의 "제작자 소개"를 클릭해 주십시오)</p>
+                </section>
+            </div>
+        </div>
+        <div class="col-lg-6">
+                <!-- 야바위 게임 소단락 : 이걸 '왜' 만들었는지 설명하거나, 이유를 몰라도 즐길 수 있도록 유도할 것 -->
+                <div class="center-block" id="monteBox">
+                    <div id="locationOfCanvas"></div>
+                    <p class="messagebox" id="message">'시작' 버튼을 눌러주세요.</p>
+                    <span id="letsPlay" onclick="gameStart()">시작</span>
+                    <span class="chooseMe" id="choose1" onclick="choose1()">1</span>
+                    <span class="chooseMe" id="choose2" onclick="choose2()">2</span>
+                    <span class="chooseMe" id="choose3" onclick="choose3()">3</span>
+                    <span id="clearScore" onclick="clearScore()">점수지우기</span>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+{% if user.is_authenticated %}
+<script>
+    // 로그인했을 때만 사용되며, 해당 계정의 점수를 DB에서 받아온다.
+    // 점수 다운로드 코드는 static/js/monte.js에 있다.
+    var gameData = {
+        'level': 1,
+        'score': 0,
+        'highscore': 0
+    };
+    $(document).ready(function() {
+        scoreDownload();
+    });
+</script>
+{% else %}
+<script>
+    var gameData = {
+        'level': 1,
+        'score': 0,
+        'highscore': 0
+    };
+</script>
+{% endif %}
+<script>
+    $(document).ready(function () {
+        gameReady();
+    });
+</script>
+{% endblock javascript %}

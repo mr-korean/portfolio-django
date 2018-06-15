@@ -1,0 +1,25 @@
+/* base.css에서 색깔 관련 요소들만 여기로 옮겨올 것 */
+
+body {
+    background-color: #2c1d01;
+}
+
+.content-main {
+    background-color: #ffd890;
+}
+
+header {
+    background-color: #462d01;
+}
+
+nav ul li a{
+    color: orange;
+    background-color: #805402;
+    border: 1px solid orange;
+}
+
+nav ul li a:hover {
+    color: #805402;
+    background-color: orange;
+    border: 1px solid #805402;
+}

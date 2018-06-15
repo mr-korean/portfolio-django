@@ -1,0 +1,36 @@
+{% extends "board/base_board.html" %}
+{% block title %}게시판 목록{% endblock %}
+{% block content_board %}
+<p style="color: red;">※ 가급적이면 점수판처럼 표 형태로 만들 것.</p>
+<div>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>날짜</th>
+        </tr>
+{% for post in posts %}
+<tr>
+    <td>1</td>
+    <td><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
+    <!-- https://goo.gl/aw2sQW 내장 템플릿 태그와 필터 -->
+    <td>{{ post.owner }}</td>
+    <td>{{ post.modify_date|date:"Y-m-d"|lower }}</td>
+    {% if forloop.last == False %}
+    {% endif %}
+    </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+    {% endif %}
+    <!-- https://goo.gl/BRFiJV 의 Context부분 참고 -->
+    <!-- https://goo.gl/cS47NK page 객체에 number -->
+    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">다음</a>
+    {% endif %}
+{% endblock content_board %}

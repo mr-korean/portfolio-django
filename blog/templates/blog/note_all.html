@@ -1,0 +1,26 @@
+{% extends "blog/base_blog.html" %}
+{% block content_blog %}
+
+<h2>블로그 메인</h2>
+
+{% for note in notes %}
+    <h3><a href="{{ note.get_absolute_url }}">{{ note.title }}</a></h3>
+    <p>{{ note.description }}</p>
+    <p>{{ note.modify_date|date:"수정일: Y년 m월 d일" }}</p>
+{% endfor %}
+<span style="color: red;">(본문 첫 줄을 보여줄 것. admin.py를 손대면 되려나?)</span>
+<br>
+<div>
+    <span>
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+        {% endif %}
+
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">다음</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock content_blog %}

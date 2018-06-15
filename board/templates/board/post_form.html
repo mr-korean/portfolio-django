@@ -1,0 +1,9 @@
+{% extends "board/base_board.html" %}
+{% block title %}게시판 쓰기{% endblock %}
+{% block content_board %}
+<h4>게시글 작성</h4>
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>
+{% endblock content_board %}

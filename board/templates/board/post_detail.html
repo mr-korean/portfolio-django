@@ -1,0 +1,19 @@
+{% extends "board/base_board.html" %}
+{% block title %}게시판 내용{% endblock %}
+{% block content_board %}
+<h2>{{post.title}}</h2>
+<div>글쓴이: {{post.owner}} 작성:{{post.create_date}} 수정:{{post.modify_date}}</div>
+
+<p>{{post.content|linebreaks}}</p>
+
+{% if post.get_previous_post %}
+<a href="{{post.get_previous_post.get_absolute_url}}">이전글</a>
+{% else %}
+처음
+{% endif %}
+{% if post.get_next_post %}
+<a href="{{post.get_next_post.get_absolute_url}}">다음글</a>
+{% else %}
+마지막
+{% endif %}
+{% endblock content_board %}

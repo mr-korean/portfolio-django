@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <title>{% block title %}포트폴리오{% endblock %}</title>
+    {% block style %}{% endblock %} {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% now "m" as todayMonth %}
+    {% if todayMonth in "030405" %}
+    <link rel="stylesheet" href="{% static 'css/base-spring.css' %}" />
+    {% elif todayMonth in "060708" %}
+    <link rel="stylesheet" href="{% static 'css/base-summer.css' %}" />
+    {% elif todayMonth in "091011" %}
+    <link rel="stylesheet" href="{% static 'css/base-autumn.css' %}" />
+    {% elif todayMonth in "120102" %}
+    <link rel="stylesheet" href="{% static 'css/base-winter.css' %}" />
+    {% endif  %}
+    <script src="{% static 'js/randomQuote.js' %}"></script>
+    {% load staticfiles %}
+    {% block js %}
+    {% endblock js %}
+</head>
+
+<body>
+    <!-- 디자인은 static/css/base.css에서 변경 -->
+    <!-- 
+        1. 사이트 로고 및 설명을 담은 이미지로 바꿀 것 (다 완료되었을 때)
+        3. 부트스트랩은 화면을 나누는 용도로만 사용할 것
+        4. (선택) 사용자의 시간을 체크하여 사이트 색깔을 자동 변경
+    -->
+    <header>
+        <div id="randomQuoter">
+            <div id="quote-box">
+                <p id="place-quote"></p>
+                <p id="place-info"></p>
+            </div>
+            <span id="quote-refresh" onclick="startQuoteFinder()">다른 명언 보기</span>
+        </div>
+        <!-- 위의 div에 별도의 .js를 통해 만든 명언 랜덤생성기를 넣는다. (야바위와 동일) -->
+
+        <nav>
+            <ul id="nav-main">
+                <li>
+                    <a href="{% url 'home' %}">홈/야바위</a>
+                </li>
+                <li>
+                    <a href="{% url 'see_page' 1 %}">제작자 소개</a>
+                </li>
+                <li>
+                    <a href="{% url 'blog:index' %}">개발자 블로그</a>
+                </li>
+                <li>
+                    <a href="{% url 'board:index' %}">문의게시판</a>
+                </li>
+                <li>
+                    <a href="{% url 'game:leaderboard' %}">점수판</a>
+                </li>
+            </ul>
+            <ul id="ul-account">
+                {% if user.is_active %}
+                <li>
+                    <a href="{% url 'password_change' %}">비밀번호 변경</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">로그아웃</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">로그인</a>
+                </li>
+                <li>
+                    <a href="{% url 'register' %}">회원가입</a>
+                </li>
+                {% endif %} {% if user.is_superuser %}
+                <li>
+                    <a href="{% url 'admin:index' %}">
+                        <i class="fa fa-cog fa-spin"></i>페이지 관리</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <div class="content-main">
+    <section class="contentBox">
+    {% block content %}{% endblock %}
+    </section>
+    <address>
+        <p>2018. Django & LHG ⓒAll Rights Reserved.</p>
+            <span style="color: red;">※ 모바일 해상도는 반드시 구현할 것. (미디어 쿼리)</span>
+        </p>
+    </address>
+    {% block javascript %}{% endblock %}
+    <script>
+        $(document).ready(function() {
+            getCounter();
+            quoteCheck();
+            setTimeout(showQuote, 50);
+        });
+    </script>
+    {% block javascript %}{% endblock %}
+</body>
+
+</html>

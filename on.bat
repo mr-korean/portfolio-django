@@ -1,0 +1,1 @@
+D:\portfolio-django\myvenv\Scripts\activate

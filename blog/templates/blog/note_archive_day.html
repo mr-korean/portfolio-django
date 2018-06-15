@@ -1,0 +1,15 @@
+{% extends "blog/base_blog.html" %}
+{% block content_blog %}
+<h2>{% day|date:"N d, Y" %}일에 보관된 노트</h2>
+
+<div>
+    <ul>
+        {% for note in object_list %}
+        <li>
+            {{ note.modify_date|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
+            <a href="{{ note.get_absolute_url }}"><strong>{{ note.title }}</strong></a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content_blog %}

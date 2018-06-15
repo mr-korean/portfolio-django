@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<table id="leaderboard">
+    <tr>
+        <th>
+            플레이어 ID
+        </th>
+        <th>
+            게임
+        </th>
+        <th>
+            최고점수
+        </th>
+        <th>
+            기록날짜
+        </th>
+    </tr>
+{% for records_monte in records_monte %}
+<tr>
+    <td style="text-align: center;">
+        {{ records_monte.player }}
+    </td>
+    <td style="text-align: center;">
+        {{ records_monte.gametitle }}
+    </td>
+    <td style="text-align: center;">
+        {{ records_monte.highscore }}
+    </td>
+    <td style="text-align: right;">
+        {{ records_monte.played_date }}
+    </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

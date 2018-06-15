@@ -1,0 +1,23 @@
+{% extends "blog/base_blog.html" %}
+{% block content_blog %}
+<h2>{% now "Y년 m월 d일" %}까지 보관된 노트 / 블로그 전체보기</h2>
+
+<ul>
+    {% for date in date_list %}
+    <li style="display: inline">
+        <a href="{% url 'blog:note_year_archive' date|date:'Y' %}">{{ date|date:"Y" }}년</a>
+    </li>
+    {% endfor %}
+</ul>
+<br>
+<div>
+    <ul>
+        {% for note in object_list %}
+        <li>
+            {{ note.modify_date|date:"Y-m-d" }}&nbsp;&nbsp;&nbsp;
+            <a href="{{ note.get_absolute_url }}"><strong>{{ note.title }}</strong></a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content_blog %}

@@ -1,0 +1,249 @@
+/* 사이트 전체의 템플릿으로 사용하는 base.html의 CSS다. */
+/* 6 */
+
+/* 기본 */
+
+body {
+    width: 1200px;
+    margin: 0 auto;
+    background-color: black;
+}
+
+.contentBox, section, footer, address {
+    width: 100%;
+}
+
+.contentBox {
+    padding-left: 10px;
+}
+
+.content-main {
+    background-color: #f0f0f0;
+}
+
+/* 페이지 최상단 배너 */
+
+header {
+    height: 175px;
+    background-color: #3f3f3f;
+    position: relative;
+}
+
+#randomQuoter {
+    position: absolute;
+    display: block;
+    width: 700px;
+    height: 100px;
+    margin: 10px auto 0 auto;
+    left: 0;
+    right: 0;
+    display: block;
+    border: 2px solid olive;
+    background-color: #feffb4;
+    color: black;
+    font-size: 10pt;
+}
+
+#quote-box {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+#quote-refresh {
+    position: absolute;
+    z-index: 5;
+    right: 0px;
+    bottom: 0px;
+    padding: 5px;
+    background-color: olive;
+    color: white;
+}
+
+/* 각 페이지 최상단 제목 */
+
+.section-title {
+    color: black;
+    background-color: wheat;
+    text-align: center;
+    border: 3px dashed sienna;
+    padding: 5px;
+    display: inline-block;
+}
+
+
+/* 사이트 메뉴 속성 */
+nav {
+    position: absolute;
+    width: 100%;
+    bottom: 4px;
+}
+
+nav ul {
+    padding-left: 0px;
+    float: left;
+}
+
+#ul-account {
+    float: right;
+}
+
+nav ul li {
+    float: left;
+    list-style-type: none;
+    margin-right: 5px;
+}
+
+nav ul li a {
+    padding: 15px 10px;
+    color: white;
+    background-color: #505050;
+    border: 1px solid white;
+}
+
+nav ul li a:hover {
+    color: #505050;
+    background-color: white;
+    border: 1px solid #505050;
+}
+
+#nav-main:first-child {
+    margin-left: 5px;
+}
+
+table, table tr, table tr th, table tr td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+/* 사이트 하단 속성 */
+
+footer {
+    margin-top: 10px;
+    border-style: dashed;
+    background-color: white;
+    border-color: black;
+    color: black;
+}
+
+address {
+    margin-top: 10px;
+    background-color: palegreen;
+    border-style: dashed;
+    border-color: green;
+    text-align: center;
+    color: black;
+}
+
+/* 게임 점수 목록 전용 */
+#leaderboard {
+    width: 600px;
+}
+
+#leaderboard th {
+    padding: 5px 10px;
+    text-align: center;
+}
+
+#leaderboard td {
+    padding: 5px;
+}
+
+/* 클리어픽스 시스템 */
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clearfix::before, .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* 대문 및 게임 관련 */
+.col-lg-6 {
+    height: 470px;
+}
+
+/* 사이트 대문 */
+#welcomeText {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 게임(야바위) 영역 */
+
+#monteBox {
+    margin-top: 10px;
+    position: relative;
+    width: 400px;
+    color: black;
+}
+
+#locationOfCanvas canvas {
+    border: 1px solid dimgray;
+    background-color: lightgray;
+}
+
+.messagebox {
+    padding: 10px 0;
+    border: 1px solid dimgray;
+    background-color: #303030;
+    color: white;
+    text-align: center;
+    margin-left: 2px;
+}
+
+#message-server {
+    margin-top: -5px;
+}
+
+
+/* 게임용 버튼 */
+
+#letsPlay {
+    position: absolute;
+    z-index: 10;
+    top: 320px;
+    left: 162px;
+    padding: 10px 20px;
+    background-color: white;
+}
+
+#clearScore {
+    position: absolute;
+    z-index: 10;
+    left: 1px;
+    top: 361px;
+    padding: 10px 20px;
+    background-color: white;
+}
+
+.chooseMe {
+    position: absolute;
+    z-index: 100;
+    top: 270px;
+    padding: 10px 20px;
+    background-color: white;
+    visibility: hidden;
+}
+
+#choose1 {
+    left: 73px;
+}
+
+#choose2 {
+    left: 173px;
+}
+
+#choose3 {
+    left: 273px;
+}
