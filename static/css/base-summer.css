@@ -12,13 +12,13 @@ header {
     background-color: darkgreen;
 }
 
-nav ul li a{
+.nav-main ul li a{
     color: greenyellow;
     background-color: green;
     border: 1px solid greenyellow;
 }
 
-nav ul li a:hover {
+.nav-main ul li a:hover {
     color: green;
     background-color: greenyellow;
     border: 1px solid green;

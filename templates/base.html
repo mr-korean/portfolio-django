@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="{% static 'css/base-winter.css' %}" />
     {% endif  %}
     <script src="{% static 'js/randomQuote.js' %}"></script>
-    {% load staticfiles %}
     {% block js %}
     {% endblock js %}
 </head>
@@ -46,8 +45,8 @@
         </div>
         <!-- 위의 div에 별도의 .js를 통해 만든 명언 랜덤생성기를 넣는다. (야바위와 동일) -->
 
-        <nav>
-            <ul id="nav-main">
+        <nav class="nav-main">
+            <ul>
                 <li>
                     <a href="{% url 'home' %}">홈/야바위</a>
                 </li>
@@ -61,7 +60,10 @@
                     <a href="{% url 'board:index' %}">문의게시판</a>
                 </li>
                 <li>
-                    <a href="{% url 'game:leaderboard' %}">점수판</a>
+                    <a href="{% url 'game:index' %}">JS게임</a>
+                </li>
+                <li>
+                    <a href="{% url 'game:leaderboard' %}">JS점수판</a>
                 </li>
             </ul>
             <ul id="ul-account">
@@ -90,19 +92,19 @@
     </header>
     <div class="content-main">
     <section class="contentBox">
-    {% block content %}{% endblock %}
+    {% block content %}{% endblock content %}
     </section>
     <address>
         <p>2018. Django & LHG ⓒAll Rights Reserved.</p>
             <span style="color: red;">※ 모바일 해상도는 반드시 구현할 것. (미디어 쿼리)</span>
         </p>
     </address>
-    {% block javascript %}{% endblock %}
+    {% block javascript %}{% endblock javascript %}
     <script>
         $(document).ready(function() {
             getCounter();
             quoteCheck();
-            setTimeout(showQuote, 50);
+            setTimeout(showQuote, 100);
         });
     </script>
 </body>

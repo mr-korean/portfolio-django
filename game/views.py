@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 
+from django.views.generic.base import TemplateView
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
@@ -15,12 +16,20 @@ import json, pytz
 # (4) http://raccoonyy.github.io/using-django-querysets-effectively-translate/
 # 위의 링크를 참고할 것.
 
+class MainView(TemplateView):
+    template_name = 'game/game_main.html'
+
+def show_game(request, order):
+    gamenumber = str(order)
+    return render(request, 'game/game-' + gamenumber + '.html')
+
+
 def leaderboard(request):
     # ※ 일반기록과 최고점수를 분리했으므로, 이제 랭킹에는 최고점수만을 표시해야 함.
     # (1) 최고점수 내림차순, (2) 날짜 최신 순으로 정렬할 것.
     checkedRecords = HighRecord.objects.all()
     records_monte = checkedRecords.order_by('-highscore')[:10] # Top 10 제한 (필터링 & 정렬 단계에서 해야 함)
-    return render(request, 'game/score_list.html', {'records_monte' : records_monte})
+    return render(request, 'game/game_score.html', {'records_monte' : records_monte})
 
 @login_required
 def score_upload_monte(request):

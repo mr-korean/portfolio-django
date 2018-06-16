@@ -35,13 +35,11 @@ urlpatterns = [
     url(r'^accounts/register/done/$', UserRegisterDoneView.as_view(), name='register_done'),
 
     url(r'^ajax/validate_username/$', validate_username, name="validate_username"),
-    # Insert other models and views using AJAX in here.
-    # 명언등록기도 AJAX를 사용하니까 여기다 넣어야 하나?
 
     url(r'^page-(?P<page>[0-9]+)/$', show_this_page, name='see_page'),
 
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^board/', include('board.urls', namespace='board')),
-    url(r'^leaderboard/', include('game.urls', namespace='game')),
+    url(r'^game/', include('game.urls', namespace='game')),
     url(r'^quote/', include('quote.urls', namespace='quote')),
 ]

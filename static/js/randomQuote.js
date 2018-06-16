@@ -11,7 +11,7 @@ var quote = {
 
 function getCounter() {
     $.ajax({
-        url: "quote/ajax/count_all_quote/",
+        url: "/quote/ajax/count_all_quote/",
         type: "GET",
         error: function (error) {
             console.log("명언 집계 실패.");
@@ -26,7 +26,7 @@ function getCounter() {
 
 function quoteCheck() {
     $.ajax({
-        url: "quote/ajax/quote_download/",
+        url: "/quote/ajax/quote_download/",
         type: "GET",
         error: function (error) {
             quote.original = "An error has occured."

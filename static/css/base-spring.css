@@ -12,13 +12,13 @@ header {
     background-color: #5e005e;
 }
 
-nav ul li a{
+.nav-main ul li a{
     color: #fa5afa;
     background-color: #8a018a;
     border: 1px solid #fa5afa;
 }
 
-nav ul li a:hover {
+.nav-main ul li a:hover {
     color: #8a018a;
     background-color: #fa5afa;
     border: 1px solid #8a018a;

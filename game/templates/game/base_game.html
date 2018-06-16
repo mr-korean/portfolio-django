@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<nav>
+    <ul>
+        <li>    
+            <a href="{% url 'game:show_game' 1 %}">야바위</a>
+        </li>
+        <li>
+            <a href="{% url 'game:show_game' 2 %}">(추가예정)</a>
+        </li>
+    </ul>
+</nav>
+
+{% block content_game %}
+{% endblock content_game %}
+
+{% endblock %}
