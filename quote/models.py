@@ -12,9 +12,11 @@ class QuoteList(models.Model):
     original = models.CharField(max_length=150, default='Out of this World') # 명언의 원문
     translated = models.CharField(max_length=150, default='이승탈출') # 명언의 번역문
     added_date = models.DateTimeField(default=timezone.now)
+    modified_date = models.DateTimeField(default=timezone.now)
 
     def modify(self):
         self.added_date = timezone.now()
+        self.modified_date = timezone.now()
         self.save()
 
     def __str__(self):
