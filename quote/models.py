@@ -13,6 +13,11 @@ class QuoteList(models.Model):
     translated = models.CharField(max_length=150, default='이승탈출') # 명언의 번역문
     added_date = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        verbose_name = 'quote'
+        verbose_name_plural = 'quotes'
+        db_table = 'quote_quotelist'
+
     def modify(self):
         self.added_date = timezone.now()
         self.save()

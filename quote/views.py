@@ -3,10 +3,9 @@ from .models import QuoteList
 from django.http import JsonResponse, HttpResponse
 import json, pytz, random
 
-allQuotes = QuoteList.objects.all()
-howMany = allQuotes.count()
-
 def quote_download(request):
+    allQuotes = QuoteList.objects.all()
+    howMany = allQuotes.count()
     randomOrder = random.randint(0, howMany - 1)
     foundQuote = allQuotes[randomOrder]
 
@@ -19,6 +18,8 @@ def quote_download(request):
     return JsonResponse(data)
 
 def count_all_quote(request):
+    allQuotes = QuoteList.objects.all()
+    howMany = allQuotes.count()
     data = {'counted' : howMany}
     return JsonResponse(data)
 
