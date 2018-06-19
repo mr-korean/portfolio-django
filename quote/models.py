@@ -17,6 +17,7 @@ class QuoteList(models.Model):
         verbose_name = 'quote'
         verbose_name_plural = 'quotes'
         db_table = 'quote_quotelist'
+        # github 업로드 테스트
 
     def modify(self):
         self.added_date = timezone.now()
