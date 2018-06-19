@@ -14,13 +14,13 @@
     {% block style %}{% endblock %} {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% now "m" as todayMonth %}
-    {% if todayMonth in "030405" %}
+    {% if todayMonth in "03, 04, 05" %}
     <link rel="stylesheet" href="{% static 'css/base-spring.css' %}" />
-    {% elif todayMonth in "060708" %}
+    {% elif todayMonth in "06, 07, 08" %}
     <link rel="stylesheet" href="{% static 'css/base-summer.css' %}" />
-    {% elif todayMonth in "091011" %}
+    {% elif todayMonth in "09, 10, 11" %}
     <link rel="stylesheet" href="{% static 'css/base-autumn.css' %}" />
-    {% elif todayMonth in "120102" %}
+    {% elif todayMonth in "12, 01, 02" %}
     <link rel="stylesheet" href="{% static 'css/base-winter.css' %}" />
     {% endif  %}
     <script src="{% static 'js/randomQuote.js' %}"></script>
