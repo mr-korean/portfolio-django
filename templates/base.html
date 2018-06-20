@@ -23,9 +23,9 @@
     {% elif todayMonth in "12, 01, 02" %}
     <link rel="stylesheet" href="{% static 'css/base-winter.css' %}" />
     {% endif  %}
+    {% block upperjs %}
+    {% endblock upperjs %}
     <script src="{% static 'js/randomQuote.js' %}"></script>
-    {% block js %}
-    {% endblock js %}
 </head>
 
 <body>
@@ -96,14 +96,14 @@
             <span style="color: red;">※ 모바일 해상도는 반드시 구현할 것. (미디어 쿼리)</span>
         </p>
     </address>
-    {% block javascript %}{% endblock javascript %}
     <script>
-        $(document).ready(function() {
+        $("#randomQuoter").ready(function() {
             getCounter();
             quoteCheck();
-            setTimeout(showQuote, 100);
+            setTimeout(showQuote, 50);
         });
     </script>
+    {% block lowerjs %}{% endblock lowerjs %}
 </body>
 
 </html>

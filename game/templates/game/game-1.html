@@ -1,9 +1,9 @@
 {% extends "game/base_game.html" %}
 
-{% block js %}
+{% block upperjs %}
 {% load staticfiles %}
 <script src="{% static 'js/monte.js' %}"></script>
-{% endblock js %}
+{% endblock upperjs %}
 
 {% block content_game %}
 <div class="container">
@@ -28,7 +28,7 @@
 </script>
 {% endblock content_game %}
 
-{% block javascript %}
+{% block lowerjs %}
 {% if user.is_authenticated %}
 <script>
     // 로그인했을 때만 사용되며, 해당 계정의 점수를 DB에서 받아온다.
@@ -56,4 +56,4 @@
         gameReady();
     });
 </script>
-{% endblock javascript %}
+{% endblock lowerjs %}
