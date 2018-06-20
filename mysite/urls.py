@@ -18,7 +18,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views
-from mysite.views import HomeView, UserRegisterView, UserRegisterDoneView, validate_username, show_this_page
+from mysite.views import HomeView, UserRegisterView, UserRegisterDoneView, validate_username
 from game import urls
 from blog import urls
 from board import urls
@@ -35,9 +35,7 @@ urlpatterns = [
     url(r'^accounts/register/done/$', UserRegisterDoneView.as_view(), name='register_done'),
 
     url(r'^ajax/validate_username/$', validate_username, name="validate_username"),
-
-    url(r'^page-(?P<page>[0-9]+)/$', show_this_page, name='see_page'),
-
+    
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^board/', include('board.urls', namespace='board')),
     url(r'^game/', include('game.urls', namespace='game')),

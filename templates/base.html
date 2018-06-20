@@ -48,13 +48,10 @@
         <nav class="nav-main">
             <ul>
                 <li>
-                    <a href="{% url 'home' %}">홈/야바위</a>
+                    <a href="{% url 'home' %}">홈/제작자 소개</a>
                 </li>
                 <li>
-                    <a href="{% url 'see_page' 1 %}">제작자 소개</a>
-                </li>
-                <li>
-                    <a href="{% url 'blog:index' %}">개발자 블로그</a>
+                    <a href="{% url 'blog:index' %}">블로그</a>
                 </li>
                 <li>
                     <a href="{% url 'board:index' %}">문의게시판</a>
@@ -95,7 +92,7 @@
     {% block content %}{% endblock content %}
     </section>
     <address>
-        <p>2018. Django & LHG ⓒAll Rights Reserved.</p>
+        <p>2018. Django & LHG ⓒAll Rights Reserved.<br>
             <span style="color: red;">※ 모바일 해상도는 반드시 구현할 것. (미디어 쿼리)</span>
         </p>
     </address>

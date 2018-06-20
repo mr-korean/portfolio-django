@@ -67,7 +67,3 @@ class SigningIn(UserCreationForm):
         if commit:
             user.save()
         return user
-
-def show_this_page(request, page):
-    pagenumber = str(page)
-    return render(request, 'documents/page-' + pagenumber + '.html')

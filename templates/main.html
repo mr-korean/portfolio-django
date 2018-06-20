@@ -1,66 +1,247 @@
-{% extends "base.html" %} {% block title %}홈/야바위{% endblock title %} {% load staticfiles %}
 
-{% block js %}
-<script src="{% static 'js/monte.js' %}"></script>
-{% endblock js %}
+
+{% extends "base.html" %} {% block title %}홈{% endblock title %} {% block style %}
+<style>
+    table,
+    table th {
+        text-align: center;
+        width: 100%;
+    }
+
+    table th:nth-child(1) {
+        width: 10%;
+    }
+
+    table th:nth-child(2) {
+        width: 40%;
+    }
+
+    table td:nth-child(2) {
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    table th:nth-child(3) {
+        width: 15%;
+    }
+
+    table th:nth-child(4) {
+        width: 15%;
+    }
+
+    table th:nth-child(5) {
+        width: 10%;
+    }
+
+    #photo1 {
+        float: right;
+        text-align: center;
+        background-color: white;
+        border: 3px solid brown;
+        background-color: khaki;
+        margin: 10px;
+        width: 250px;
+    }
+</style>
+{% endblock style %} {% load staticfiles %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <!-- 사이트 대문 : 현재는 대문과 사이트가 같은 곳에 있어서 의미가 없음. 꼭 살리고 싶다면 대문을 최대한 간소화할 것(입구 이미지만) -->
-            <div class="center-block" id="welcomeText">
-                <section>
-                    <p><span style="color: red">(이미지 위치)</span></p>
-                    <p>안녕하십니까, 레스터입니다.</p>
-                    <p>본 사이트는 웹 프로그래머로서의 포트폴리오와,
-                        <br>번역가로서의 이력서를 표현하기 위해 제작되었습니다.
-                        <br>(상세한 이력에 관해서는, 상단의 "제작자 소개"를 클릭해 주십시오)</p>
-                </section>
-            </div>
-        </div>
-        <div class="col-lg-6">
-                <!-- 야바위 게임 소단락 : 이걸 '왜' 만들었는지 설명하거나, 이유를 몰라도 즐길 수 있도록 유도할 것 -->
-                <div class="center-block" id="monteBox">
-                    <div id="locationOfCanvas"></div>
-                    <p class="messagebox" id="message">'시작' 버튼을 눌러주세요.</p>
-                    <span id="letsPlay" onclick="gameStart()">시작</span>
-                    <span class="chooseMe" id="choose1" onclick="choose1()">1</span>
-                    <span class="chooseMe" id="choose2" onclick="choose2()">2</span>
-                    <span class="chooseMe" id="choose3" onclick="choose3()">3</span>
-                    <span id="clearScore" onclick="clearScore()">점수지우기</span>
-                </div>
-        </div>
-    </div>
-</div>
+<section>
+    <table id="photo1" class="clearfix">
+        <tr>
+            <td id="photo1-td">
+                <img src="http://www.bestofsherlock.com/ref/image/paget-SHportraitC.jpg">
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center; ">
+                <span style="color: black; font-style: italic;">(내 사진 혹은 삽화 삽입)
+                </span>
+            </td>
+        </tr>
+    </table>
+    <h1 class="section-title">웹 개발자로서</h1>
+    <p>1989년 전북 전주 출생으로, 전북대학교 사학과라는 최종 학력으로
+        <b>
+            <a href="https://www.myin.or.kr/">한국마이스터정보교육원</a>
+        </b>의
+        <b>스마트 웹&콘텐츠 개발자 양성</b> 교육을 받고 웹 개발에 입문했다는 기묘한 이력을 지닌 새내기 웹 개발자입니다. 아직 미숙한 점이 많지만 확실한 것부터 직접 만들어 가면서 사이트를 채워나가고 있으며,
+        틈틈이 이용에 불편함이 없도록 최선을 다하겠습니다. 감사합니다.
+    </p>
+    <br>
+    <h1 class="section-title">적용된 기술 & 변경 내역</h1>
+    <ul>
+        <li>HTML & CSS</li>
+        <li>Javascript</li>
+        <li>jQuery</li>
+        <li>AJAX</li>
+        <li>Django</li>
+    </ul>
+    <ul>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.03.20</span> - 의미없는 페이지 삭제</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.03.19</span> - 내용 변경 시작(홈즈 팬사이트 -> 번역이력서)</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.04.27</span> - 랜덤 명언등록기 제작 시작</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.05.12</span> - HTML부터 정리 중</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.05.20</span> - 랜덤 명언 출력기 완성</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.05.25</span> - 야바위 게임 AJAX 오류 수정</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.05.30</span> - 블로그 앱 추가 & 아카이브 기능 보완 중</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.06.15</span> - 계절별 CSS 완성</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.06.19</span> - 로컬-GitHub-PythonAnywhere 버전관리 오류 수정</li>
+        <li>
+            <span style="color:teal; font-weight:bold;">2018.06.20</span> - 메인에 있던 야바위 게임을 하위 앱 game으로 이동</li>
+    </ul>
+    <h1 class="section-title">번역가로서</h1>
+    <br>
+    <table>
+        <tr>
+            <th>날짜</th>
+            <th>프로젝트 이름</th>
+            <th>개발자</th>
+            <th>소속팀</th>
+            <th>공식/비공식</th>
+        </tr>
+        <tr>
+            <td>작업중</td>
+            <td>GTA: 산 안드레아스 모바일</td>
+            <td>락스타 게임즈</td>
+            <td>팀 왈도</td>
+            <td>비공식</td>
+        </tr>
+        <tr>
+            <td>작업중</td>
+            <td>가브리엘 나이트: 20주년 기념판</td>
+            <td>Pinkerton Roads Studio</td>
+            <td>코리아ADV</td>
+            <td>비공식</td>
+        </tr>
+        <tr>
+            <td>2017-11-10</td>
+            <td>이터니움</td>
+            <td>Making Fun, Dream Primer</td>
+            <td>파인글로벌</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2017-10-12</td>
+            <td>Dragon Putt</td>
+            <td>Modernist Games</td>
+            <td>파인글로벌</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2017-09-21</td>
+            <td>위키피디아 서비스 향상을 위한 여론조사 분석</td>
+            <td>Reboot</td>
+            <td>파인글로벌</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2017-05-21</td>
+            <td>Hacknet: Labyrinths DLC</td>
+            <td>Surprise Attack Games</td>
+            <td>단독</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2017-05-01</td>
+            <td>BOKIDA: Heartfelt Reunion</td>
+            <td>Rice Cooker Republic</td>
+            <td>단독</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2016-04-27</td>
+            <td>톰 클랜시의 디비전 DLC 수집요소 자막</td>
+            <td>유비소프트</td>
+            <td>글로벌웨이</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2016-01-15</td>
+            <td>Ecoquest: The Search for Cetus</td>
+            <td>시에라 엔터테인먼트</td>
+            <td>코리아ADV</td>
+            <td>비공식</td>
+        </tr>
+        <tr>
+            <td>2014-11-14</td>
+            <td>월드 오브 탱크 '블리츠' 홍보영상 자막</td>
+            <td>워게이밍</td>
+            <td>글로벌웨이</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2014-10-02</td>
+            <td>King's Quest VI: Heir Today, Gone Tomorrow</td>
+            <td>시에라 엔터테인먼트</td>
+            <td>코리아ADV</td>
+            <td>비공식</td>
+        </tr>
+        <tr>
+            <td>2014-07-??</td>
+            <td>슈퍼내추럴 시즌 9 DVD 특전영상 자막</td>
+            <td>WB & CW</td>
+            <td>Telematic Solutions</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2014-03-27</td>
+            <td>Motor World: Car Factory</td>
+            <td>FrolicFox Studios</td>
+            <td>글로에이트</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2014-01-28</td>
+            <td>가브리엘 나이트: 아버지들의 죄</td>
+            <td>시에라 엔터테인먼트</td>
+            <td>코리아ADV</td>
+            <td>비공식</td>
+        </tr>
+        <tr>
+            <td>2013-08-??</td>
+            <td>Divinity: Dragon Commander</td>
+            <td>라리안 스튜디오</td>
+            <td>(기록 소실)</td>
+            <td>공식</td>
+        </tr>
+        <tr>
+            <td>2013-07-04</td>
+            <td>GTA: 더 발라드 오브 게이 토니</td>
+            <td>락스타 게임즈</td>
+            <td>한필드</td>
+            <td>비공식</td>
+        </tr>
+        <tr>
+            <td>2013-06-30</td>
+            <td>트랜스포머: 폴 오브 사이버트론</td>
+            <td>액티비전</td>
+            <td>한필드</td>
+            <td>비공식</td>
+        </tr>
+        <tr>
+            <td>2012-08-??</td>
+            <td>L.A. 느와르</td>
+            <td>락스타 게임즈</td>
+            <td>베타겜</td>
+            <td>비공식</td>
+        </tr>
+        <tr>
+            <td>2011-10-26</td>
+            <td>GTA: 더 로스트 앤 댐드</td>
+            <td>락스타 게임즈</td>
+            <td>베타겜</td>
+            <td>비공식</td>
+        </tr>
+    </table>
+</section>
 {% endblock content %}
-
-{% block javascript %}
-{% if user.is_authenticated %}
-<script>
-    // 로그인했을 때만 사용되며, 해당 계정의 점수를 DB에서 받아온다.
-    // 점수 다운로드 코드는 static/js/monte.js에 있다.
-    var gameData = {
-        'level': 1,
-        'score': 0,
-        'highscore': 0
-    };
-    $(document).ready(function() {
-        scoreDownload();
-    });
-</script>
-{% else %}
-<script>
-    var gameData = {
-        'level': 1,
-        'score': 0,
-        'highscore': 0
-    };
-</script>
-{% endif %}
-<script>
-    $(document).ready(function () {
-        gameReady();
-    });
-</script>
-{% endblock javascript %}

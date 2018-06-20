@@ -327,7 +327,7 @@ function clearScore() {
 function scoreUpload() {
     console.log("전송할 현재 점수:" + gameData.score);
     $.ajax({
-        url: "leaderboard/ajax/score_upload_monte/",
+        url: "/game/ajax/score_upload_monte/",
         type: "GET",
         data: {'uploadedScore': gameData.score},
         dataType: 'JSON',
@@ -343,7 +343,7 @@ function scoreUpload() {
 function HighscoreUpload() {
     console.log("전송할 최고 점수:" + gameData.highscore);
     $.ajax({
-        url: "leaderboard/ajax/highscore_upload_monte/",
+        url: "/game/ajax/highscore_upload_monte/",
         type: "GET",
         data: {'uploadedHighscore': gameData.highscore},
         dataType: 'JSON',
@@ -358,7 +358,7 @@ function HighscoreUpload() {
 
 function scoreDownload() {
     $.ajax({
-        url: "leaderboard/ajax/record_download_monte/",
+        url: "/game/ajax/record_download_monte/",
         type: "GET",
         error: function (error) {
             console.log("회원의 점수를 찾지 못했습니다.");
