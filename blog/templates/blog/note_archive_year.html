@@ -1,11 +1,11 @@
 {% extends "blog/base_blog.html" %}
 {% block content_blog %}
-<h2>{{ year|date:"Y"}}년에 보관된 노트</h2>
+<h2>{{ year|date:"Y" }}년에 보관된 노트</h2>
 
 <ul>
     {% for date in date_list %}
     <li style="display: inline">
-        <a href="{% url 'blog:note_month_archive' year|date:'Y' date|date:'b' %}">{{ date|date:"M" }}</a>
+        <a href="{% url 'blog:note_month_archive' year|date:'Y' date|date:'b' %}">{{ date|date:"n" }}월</a>
     </li>
     {% endfor %}
 </ul>

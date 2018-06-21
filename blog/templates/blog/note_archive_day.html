@@ -1,6 +1,6 @@
 {% extends "blog/base_blog.html" %}
 {% block content_blog %}
-<h2>{% day|date:"N d, Y" %}일에 보관된 노트</h2>
+<h2>{{ day|date:"Y" }}년 {{ day|date:"b" }} {{ day|date:"d"}}일에 보관된 노트</h2>
 
 <div>
     <ul>
