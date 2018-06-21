@@ -12,7 +12,7 @@ urlpatterns = [
     # 날짜별 아카이브 링크
     url(r'^archive/$', NoteAV.as_view(), name='note_archive'),
     url(r'^(?P<year>\d{4})/$', NoteYAV.as_view(), name='note_year_archive'),
-    url(r'^(?P<year>\d{4})/(?P<month>[-\w]{2,3})/$', NoteMAV.as_view(), name='note_month_archive'),
-    url(r'^(?P<year>\d{4})/(?P<month>[-\w]{2,3})/(?P<day>\d{1,2})/$', NoteDAV.as_view(), name='note_day_archive'),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/$', NoteMAV.as_view(month_format='%m'), name='note_month_archive'),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{1,2})/$', NoteDAV.as_view(), name='note_day_archive'),
     url(r'^today/$', NoteTAV.as_view(), name='note_today_archive'),
 ]

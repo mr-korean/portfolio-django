@@ -5,7 +5,7 @@
 <ul>
     {% for date in date_list %}
     <li style="display: inline">
-        <a href="{% url 'blog:note_month_archive' year|date:'Y' date|date:'b' %}">{{ date|date:"n" }}월</a>
+        <a href="{% url 'blog:note_month_archive' year|date:'Y' date|date:'m' %}">{{ date|date:"n" }}월</a>
     </li>
     {% endfor %}
 </ul>
