@@ -57,7 +57,7 @@ var screen = {
         this.canvas.width = 400;
         this.canvas.height = 400;
         this.context = this.canvas.getContext("2d");
-        document.getElementById("locationOfCanvas").appendChild(this.canvas); // 캔버스 만들기
+        document.getElementById("canvas-monte").appendChild(this.canvas); // 캔버스 만들기
     },
     wipeScreen: function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height); // 캔버스 비우기
@@ -115,7 +115,7 @@ function gameStart() {
 };
 
 function randomAnswer() {
-    document.getElementById("message").innerHTML = "빨간색 박스의 위치를 기억하세요."; // 정답 미리보기 안내
+    document.getElementById("message-monte").innerHTML = "빨간색 박스의 위치를 기억하세요."; // 정답 미리보기 안내
     hiddenAnswer = Math.floor((Math.random() * 3) + 1) // 무작위로 1개 선택 (3개 기준)
     switch (hiddenAnswer) {
         case 1:
@@ -158,7 +158,7 @@ function checkHiddenAnswer() {
 
 // (6) (최중요) 설계도 - 골라인 설정 - 애니메이션 ON - 도착 확인 - 애니메이션 OFF - 정답 확인
 function shuffling() {
-    document.getElementById("message").innerHTML = "이제부터 섞겠습니다. 집중하세요!";
+    document.getElementById("message-monte").innerHTML = "이제부터 섞겠습니다. 집중하세요!";
     // ※ 인터벌은 맨 처음에 한 번 돌게 하고, 섞기가 전부 끝나면 멈추기로 한다.
     makeInterval = setInterval(moveCups, 8);
 
@@ -256,7 +256,7 @@ function answerMeNow() {
     clearInterval(makeInterval);
     // (혹시 모르니까) 인터벌 정지 함수를 다시 한 번 넣는다.
 
-    document.getElementById("message").innerHTML = "다 섞었습니다. 빨간색 박스는 몇 번 자리에 있을까요?";
+    document.getElementById("message-monte").innerHTML = "다 섞었습니다. 빨간색 박스는 몇 번 자리에 있을까요?";
     console.log(hiddenAnswer, cupsChanged)
     // console.log("설계도 : " + cups + "정답 : " + finalAnswer);
     document.getElementById("choose1").style.visibility = "visible";
@@ -293,13 +293,13 @@ function choose3() {
 };
 
 function youCorrect() {
-    document.getElementById("message").innerHTML = "정답입니다! 축하합니다!"
+    document.getElementById("message-monte").innerHTML = "정답입니다! 축하합니다!"
     gameData.score += 1;
     gameData.highscore += 1;
 }
 
 function youWrong() {
-    document.getElementById("message").innerHTML = "땡! 틀렸습니다... 정답은 " + youMissed + "번입니다.";
+    document.getElementById("message-monte").innerHTML = "땡! 틀렸습니다... 정답은 " + youMissed + "번입니다.";
     gameData.score -= 1;
 }
 

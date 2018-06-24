@@ -6,26 +6,18 @@
 {% endblock upperjs %}
 
 {% block content_game %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="center-block" id="monteBox">
-                <div id="locationOfCanvas"></div>
-                <p class="messagebox" id="message">'시작' 버튼을 눌러주세요.</p>
-                <span id="letsPlay" onclick="gameStart()">시작</span>
-                <span class="chooseMe" id="choose1" onclick="choose1()">1</span>
-                <span class="chooseMe" id="choose2" onclick="choose2()">2</span>
-                <span class="chooseMe" id="choose3" onclick="choose3()">3</span>
-                <span id="clearScore" onclick="clearScore()">점수지우기</span> 
-            </div>
-        </div>
+<div>
+    <div class="box-game">
+        <div id="canvas-monte"></div>
+        <p class="messagebox" id="message-monte">'시작' 버튼을 눌러주세요.</p>
+        <p class="messagebox">(비로그인 플레이에서는 점수가 저장되지 않습니다.)</p>
+        <span id="letsPlay" onclick="gameStart()">시작</span>
+        <span class="chooseMe" id="choose1" onclick="choose1()">1</span>
+        <span class="chooseMe" id="choose2" onclick="choose2()">2</span>
+        <span class="chooseMe" id="choose3" onclick="choose3()">3</span>
+        <span id="clearScore" onclick="clearScore()">점수지우기</span> 
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        gameReady();
-    });
-</script>
 {% endblock content_game %}
 
 {% block lowerjs %}

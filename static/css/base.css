@@ -159,12 +159,6 @@ address {
     display: table;
 }
 
-
-/* 대문 및 게임 관련 */
-.col-lg-6 {
-    height: 470px;
-}
-
 /* 사이트 대문 */
 #welcomeText {
     height: 100%;
@@ -176,14 +170,14 @@ address {
 
 /* 게임(야바위) 영역 */
 
-#monteBox {
+.box-game {
     margin-top: 10px;
     position: relative;
     width: 400px;
     color: black;
 }
 
-#locationOfCanvas canvas {
+.box-game canvas {
     border: 1px solid dimgray;
     background-color: lightgray;
 }
@@ -194,13 +188,8 @@ address {
     background-color: #303030;
     color: white;
     text-align: center;
-    margin-left: 2px;
+    margin: 2px auto;
 }
-
-#message-server {
-    margin-top: -5px;
-}
-
 
 /* 게임용 버튼 */
 
