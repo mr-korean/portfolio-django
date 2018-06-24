@@ -23,14 +23,14 @@
     {% elif todayMonth in "12, 01, 02" %}
     <link rel="stylesheet" href="{% static 'css/base-winter.css' %}" />
     {% endif  %}
+    <script src="{% static 'js/randomQuote.js' %}"></script>
     {% block upperjs %}
     {% endblock upperjs %}
-    <script src="{% static 'js/randomQuote.js' %}"></script>
 </head>
 
 <body>
     <!-- 디자인은 static/css/base.css에서 변경 -->
-    <!-- 
+    <!--
         1. 사이트 로고 및 설명을 담은 이미지로 바꿀 것 (다 완료되었을 때)
         3. 부트스트랩은 화면을 나누는 용도로만 사용할 것
         4. (선택) 사용자의 시간을 체크하여 사이트 색깔을 자동 변경
@@ -97,7 +97,7 @@
         </p>
     </address>
     <script>
-        $("#randomQuoter").ready(function() {
+        $(document).ready(function() {
             getCounter();
             quoteCheck();
             setTimeout(showQuote, 200);
