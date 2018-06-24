@@ -42,17 +42,14 @@ function quoteCheck() {
             quote.name = data.name;
             quote.order = data.selected + 1;
             console.log("명언 검색 성공.");
+            document.getElementById("place-quote").innerHTML = quote.original + "<br>" + quote.translated;
+            document.getElementById("place-info").innerHTML = "- " + quote.name + ", ( " + quote.order + " / " + quote.all + " )";
+            console.log("명언 출력 성공.");
         }
     });
-}
-
-function showQuote() {
-    document.getElementById("place-quote").innerHTML = quote.original + "<br>" + quote.translated;
-    document.getElementById("place-info").innerHTML = "- " + quote.name + ", ( " + quote.order + " / " + quote.all + " )";
 }
 
 function startQuoteFinder() {
     getCounter();
     quoteCheck();
-    showQuote();
 }
