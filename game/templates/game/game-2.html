@@ -1,5 +1,10 @@
 {% extends "game/base_game.html" %}
 
+{% block extra_style %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/game-monte.css' %}">
+{% endblock extra_style %}
+
 {% block upperjs %}
 (여기에 러시안룰렛 js 파일을 넣을 것.)
 {% endblock upperjs %}
@@ -9,11 +14,11 @@
     <div class="box-game">
         <div id="canvas-russian"></div>
         <p class="messagebox" id="message-russian">준비중입니다.</p>
-        <p class="messagebox">(비로그인 플레이에서는 점수가 저장되지 않습니다.)</p>
+        <p class="messagebox">(로그인하지 않으면 점수는 저장되지 않습니다.)</p>
     </div>
 </div>
 
-<p id="test-1"></p>
+<p id="test2-1"></p>
 
 
 
@@ -28,7 +33,7 @@
         bullets = revolver.length;
         console.log("총알 배치: " + revolver);
         console.log("남은 탄창: " + bullets);
-        document.getElementById("test-1").innerHTML = "선택지를 골라주세요.<br>(일단 span을 누르면 함수가 실행되게 처리)";
+        document.getElementById("test2-1").innerHTML = "선택지를 골라주세요.<br>(일단 span을 누르면 함수가 실행되게 처리)";
     }
     randomSelect();
 
@@ -81,14 +86,25 @@
 {% block lowerjs %}
 {% if user.is_authenticated %}
 <script>
-    // 기본 점수 틀을 만들고 점수 받아오기 함수를 실행.
+    var gameData = {
+        'score': 0,
+        'highscore': 0
+    };
+    $(document).ready(function() {
+        // 점수 받아오는 함수
+    });
 </script>
 {% else %}
 <script>
-    // 기본 점수 틀을 유지함
+    var gameData = {
+        'score': 0,
+        'highscore': 0
+    };
 </script>
 {% endif %}
 <script>
-    // (JQ로, 문서가 준비되면 게임 준비 함수를 실행)
+    $(document).ready(function() {
+        // 게임 시작 함수
+    });
 </script>
 {% endblock lowerjs %}

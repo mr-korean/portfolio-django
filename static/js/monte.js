@@ -108,7 +108,7 @@ function component(width, height, color, x, y, type) {
 
 // (2) "시작"을 누르면 야바위가 시작된다.
 function gameStart() {
-    document.getElementById("letsPlay").style.visibility = "hidden";
+    document.getElementById("start-monte").style.visibility = "hidden";
     randomAnswer(); // (3) 정답을 무작위로 선택한다.
     checkHiddenAnswer(); // (4) 정답을 빨간색으로 확인시킨다. (정답 확인 3초)
     setTimeout(shuffling, (3000 + 1000)); // (5) checkHiddenAnswer로부터 초 뒤에 섞기를 시작한다.
@@ -309,7 +309,7 @@ function gameReset() {
         HighscoreUpload();
     }
     scoreUpload();
-    document.getElementById("letsPlay").style.visibility = "visible";
+    document.getElementById("start-monte").style.visibility = "visible";
     document.getElementById("choose1").style.visibility = "hidden";
     document.getElementById("choose2").style.visibility = "hidden";
     document.getElementById("choose3").style.visibility = "hidden";

@@ -1,0 +1,48 @@
+{% extends "game/base_game.html" %}
+
+{% block upperjs %}
+(여기에 도둑잡기 js 파일을 넣을 것.)
+{% endblock upperjs %}
+
+{% block content_game %}
+<div>
+    <div class="box-game">
+        <div id="canvas-russian"></div>
+        <p class="messagebox" id="message-russian">준비중입니다.</p>
+        <p class="messagebox">(로그인하지 않으면 점수는 저장되지 않습니다.)</p>
+    </div>
+</div>
+
+<p id="test3-1"></p>
+
+<script>
+    var p1hand, p2hand, deck;
+
+    function randomCard() {
+        // 1. p1hand와 p2hand를 공배열로 만듬
+        // 2. random으로 선을 정함
+        // 3. random으로 deck 배열에 있는 것을 하나씩 splice하여 p1hand와 p2hand에 추가
+    }
+</script>
+
+
+
+
+
+
+{% endblock content_game %}
+
+{% block lowerjs %}
+{% if user.is_authenticated %}
+<script>
+    // 기본 점수 틀을 만들고 점수 받아오기 함수를 실행.
+</script>
+{% else %}
+<script>
+    // 기본 점수 틀을 유지함
+</script>
+{% endif %}
+<script>
+    // (JQ로, 문서가 준비되면 게임 준비 함수를 실행)
+</script>
+{% endblock lowerjs %}

@@ -1,0 +1,20 @@
+.chooseMe {
+    position: absolute;
+    z-index: 100;
+    top: 270px;
+    padding: 10px 20px;
+    background-color: white;
+    visibility: hidden;
+}
+
+#choose1 {
+    left: 73px;
+}
+
+#choose2 {
+    left: 173px;
+}
+
+#choose3 {
+    left: 273px;
+}

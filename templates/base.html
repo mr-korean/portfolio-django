@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <title>{% block title %}포트폴리오{% endblock %}</title>
-    {% block style %}{% endblock %} {% load staticfiles %}
+    {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% now "m" as todayMonth %}
     {% if todayMonth in "03, 04, 05" %}
@@ -23,6 +23,8 @@
     {% elif todayMonth in "12, 01, 02" %}
     <link rel="stylesheet" href="{% static 'css/base-winter.css' %}" />
     {% endif  %}
+    {% block extra_style %}{% endblock extra_style %}
+    {% block style %}{% endblock style %}
     <script src="{% static 'js/randomQuote.js' %}"></script>
     {% block upperjs %}
     {% endblock upperjs %}
