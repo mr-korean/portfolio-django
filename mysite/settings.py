@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'game', #게임
     'quote', #명언
     'blog', #블로그
+    'tagging.apps.TaggingConfig', #태그(교재 p.157)
 ]
 
 MIDDLEWARE = [

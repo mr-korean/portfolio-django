@@ -15,4 +15,8 @@ urlpatterns = [
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/$', NoteMAV.as_view(month_format='%m'), name='note_month_archive'),
     url(r'^(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{1,2})/$', NoteDAV.as_view(), name='note_day_archive'),
     url(r'^today/$', NoteTAV.as_view(), name='note_today_archive'),
+
+    # 태그 관련 링크
+    url(r'^tag/$', TagCloud.as_view(), name='tag_cloud'),
+    url(r'^tag/(?P<tag>[^/]+(?u))/$', NoteTOL.as_view(), name='tagged_object_list'),
 ]

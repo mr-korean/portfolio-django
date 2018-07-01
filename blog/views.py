@@ -1,9 +1,11 @@
 # -*- coding: UTF-8 -*-
 
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.dates import ArchiveIndexView, YearArchiveView, MonthArchiveView, DayArchiveView, TodayArchiveView
 from .models import Note
+from tagging.models import Tag, TaggedItem # 태그 관련 모델(설치해야 가능)
+from tagging.views import TaggedObjectList # 태그 관련 뷰(설치해야 가능)
 
 class NoteLV(ListView):
     model = Note
@@ -13,6 +15,13 @@ class NoteLV(ListView):
 
 class NoteDV(DetailView):
     model = Note
+
+class TagCloud(TemplateView):
+    template_name = 'tagging/tagging_cloud.html'
+
+class NoteTOL(TaggedObjectList):
+    model = Note
+    template_name = 'tagging/tagging_note_list.html'
 
 # 날짜별 아카이브 뷰
 
@@ -36,3 +45,4 @@ class NoteDAV(DayArchiveView):
 class NoteTAV(TodayArchiveView):
     model = Note
     date_field = 'modify_date'
+

@@ -1,4 +1,5 @@
 {% extends "blog/base_blog.html" %}
+
 {% block content_blog %}
 <h2>{{ object.title }}</h2>
 
@@ -17,5 +18,15 @@
 
 <div>
     {{ object.content|linebreaks }}
+</div>
+
+<div>
+    <b>태그: </b>
+    {% load tagging_tags %}
+    {% tags_for_object object as tags %}
+    {% for tag in tags %}
+    <a href="{% url 'blog:tagged_object_list' tag.name %}">{{tag.name}}</a>
+    {% endfor %}
+    <a href="{% url 'blog:tag_cloud' %}"><i>[ 모든 태그 보기 ]</i></a>
 </div>
 {% endblock content_blog %}
