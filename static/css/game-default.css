@@ -1,0 +1,43 @@
+.box-game {
+    /* 캔버스와 안내문이 담긴 영역 전체 */
+    margin-top: 10px;
+    position: relative;
+    width: 400px;
+}
+
+.box-game canvas {
+    /* 게임 전용 캔버스 */
+    border: 1px solid dimgray;
+    background-color: lightgray;
+}
+
+.box-message {
+    /* 게임 전용 메시지 */
+    padding: 10px 0;
+    border: 1px solid dimgray;
+    background-color: #303030;
+    color: white;
+    text-align: center;
+    margin: 2px 0;
+}
+
+.game-button {
+    /* 게임용 버튼 (공용) */
+    z-index: 10;
+    padding: 15px 20px;
+    background-color: white;
+    position: absolute;
+}
+
+.game-start {
+    /* 시작 버튼 (공용) */
+    top: 320px;
+    left: 162px;
+}
+
+.game-clearScore {
+    left: 1px;
+    bottom: 94px;
+}
+
+/* ※※※ 그 외의 세부사항은 block을 이용해 게임마다 style로 삽입 ※※※ */

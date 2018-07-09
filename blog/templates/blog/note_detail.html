@@ -29,4 +29,10 @@
     {% endfor %}
     <a href="{% url 'blog:tag_cloud' %}"><i>[ 모든 태그 보기 ]</i></a>
 </div>
+<br>
+<div class="div-comments">
+    {% load disqus_tags %}
+    {% disqus_show_comments %}
+</div>
+
 {% endblock content_blog %}

@@ -45,7 +45,12 @@ INSTALLED_APPS = [
     'quote', #명언
     'blog', #블로그
     'tagging.apps.TaggingConfig', #태그(교재 p.157)
+    'disqus', #댓글(교재 p.187)
+    'django.contrib.sites', #댓글(교재 p.187)
 ]
+
+DISQUS_WEBSITE_SHORTNAME = 'mrkorean89'
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

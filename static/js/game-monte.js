@@ -1,5 +1,4 @@
-var random1, random2, position1, position2, position3, save1, save2, numbers, cupsChanged, shuffleCount, makeInterval, hiddenAnswer,
-    finalAnswer, youMissed, parsedData;
+var random1, random2, position1, position2, position3, save1, save2, numbers, cupsChanged, shuffleCount, makeInterval, hiddenAnswer, finalAnswer, youMissed, parsedData;
 var rotationLimit = 1; // 섞기 돌리는 횟수
 var cups = ["A", "B", "C"];
 
@@ -18,20 +17,13 @@ function updateScreen() {
 };
 
 function moveCups() {
-    screen.wipeScreen();
     cupA.moveThis();
     cupB.moveThis();
     cupC.moveThis();
     cupA.checkPosition();
     cupB.checkPosition();
     cupC.checkPosition();
-    cupA.respawn();
-    cupB.respawn();
-    cupC.respawn();
-    score.text = "점수: " + gameData.score;
-    highscore.text = "최고점수: " + gameData.highscore;
-    score.respawn();
-    highscore.respawn();
+    updateScreen();
 };
 
 // (1) 사이트를 불러오면, 함수 gameReady가 곧바로 실행된다.
@@ -259,9 +251,9 @@ function answerMeNow() {
     document.getElementById("message-monte").innerHTML = "다 섞었습니다. 빨간색 박스는 몇 번 자리에 있을까요?";
     console.log(hiddenAnswer, cupsChanged)
     // console.log("설계도 : " + cups + "정답 : " + finalAnswer);
-    document.getElementById("choose1").style.visibility = "visible";
-    document.getElementById("choose2").style.visibility = "visible";
-    document.getElementById("choose3").style.visibility = "visible";
+    document.getElementById("monteButton-1").style.visibility = "visible";
+    document.getElementById("monteButton-2").style.visibility = "visible";
+    document.getElementById("monteButton-3").style.visibility = "visible";
 };
 
 function choose1() {
@@ -310,9 +302,9 @@ function gameReset() {
     }
     scoreUpload();
     document.getElementById("start-monte").style.visibility = "visible";
-    document.getElementById("choose1").style.visibility = "hidden";
-    document.getElementById("choose2").style.visibility = "hidden";
-    document.getElementById("choose3").style.visibility = "hidden";
+    document.getElementById("monteButton-1").style.visibility = "hidden";
+    document.getElementById("monteButton-2").style.visibility = "hidden";
+    document.getElementById("monteButton-3").style.visibility = "hidden";
     updateScreen();
 }
 

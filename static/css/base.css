@@ -112,6 +112,12 @@ table, table tr, table tr th, table tr td {
     border-collapse: collapse;
 }
 
+.div-comments {
+    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+    font-size: 12px;
+}
+
+
 /* 사이트 하단 속성 */
 
 footer {
@@ -168,46 +174,3 @@ address {
     align-items: center;
     justify-content: center;
 }
-
-/* 게임(야바위) 영역 */
-
-.box-game {
-    margin-top: 10px;
-    position: relative;
-    width: 400px;
-    color: black;
-}
-
-.box-game canvas {
-    border: 1px solid dimgray;
-    background-color: lightgray;
-}
-
-.box-message {
-    padding: 10px 0;
-    border: 1px solid dimgray;
-    background-color: #303030;
-    color: white;
-    text-align: center;
-    margin: 2px auto;
-}
-
-.game-start {
-    position: absolute;
-    z-index: 10;
-    top: 320px;
-    left: 162px;
-    padding: 10px 20px;
-    background-color: white;
-}
-
-.clearScore {
-    position: absolute;
-    z-index: 10;
-    left: 1px;
-    top: 361px;
-    padding: 10px 20px;
-    background-color: white;
-}
-
-/* 게임용 버튼은 game-(게임 이름).css를 참고 */
