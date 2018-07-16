@@ -6,6 +6,7 @@ var cups = ["A", "B", "C"];
 // (※) 화면 새로고침. 움직이는 효과는 전부 여기에 있다.
 // "지우기- 조건확인 - 좌표이동 - 그리기"의 무한반복이다.
 function updateScreen() {
+    // (청소 → 표시) 세트
     screen.wipeScreen();
     cupA.respawn();
     cupB.respawn();
@@ -16,18 +17,9 @@ function updateScreen() {
     highscore.respawn();
 };
 
-function moveCups() {
-    cupA.moveThis();
-    cupB.moveThis();
-    cupC.moveThis();
-    cupA.checkPosition();
-    cupB.checkPosition();
-    cupC.checkPosition();
-    updateScreen();
-};
-
-// (1) 사이트를 불러오면, 함수 gameReady가 곧바로 실행된다.
 function gameReady() {
+    // 사이트가 로딩되면 실행될 함수. 게임을 준비한다.
+    // 캔버스 생성 → 도형 생성 → 도형 표시
     screen.makeScreen();
     score = new component("20px", "Arial", "black", 30, 30, "text");
     highscore = new component("20px", "Arial", "black", 200, 30, "text");
@@ -44,6 +36,7 @@ function gameReady() {
 };
 
 var screen = {
+    // 캔버스 세트(생성 및 청소)
     canvas: document.createElement("canvas"),
     makeScreen: function () {
         this.canvas.width = 400;
@@ -73,6 +66,7 @@ function component(width, height, color, x, y, type) {
     // this.C = 270; // 배열에서 처음 C의 자리
 
     this.respawn = function () {
+        // type를 파악하여 텍스트인지 도형인지 확인
         icon = screen.context;
         if (this.type == "text") // (텍스트일 경우)
         {
@@ -85,9 +79,13 @@ function component(width, height, color, x, y, type) {
         }
     }
     this.moveThis = function () {
+        // x좌표 이동
+        // 야바위 게임에서는 x좌표만 움직이므로 x좌표의 변화를 이용하여
+        // 움직임을 표시한다.
         this.x += this.boostX;
     }
     this.checkPosition = function () {
+        // x좌표 확인
         if (this.x == this.goal) {
             this.boostX = 0;
         } else if (this.x !== this.goal && this.x < this.goal) {
@@ -172,6 +170,17 @@ function shuffling() {
             answerMeNow();
         };
     };
+};
+
+function moveCups() {
+    // 좌표이동 → 위치확인( → "표시 세트")
+    cupA.moveThis();
+    cupB.moveThis();
+    cupC.moveThis();
+    cupA.checkPosition();
+    cupB.checkPosition();
+    cupC.checkPosition();
+    updateScreen();
 };
 
 // (6.1) 설계도 만들기
