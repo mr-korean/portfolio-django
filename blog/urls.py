@@ -19,4 +19,5 @@ urlpatterns = [
     # 태그 관련 링크
     url(r'^tag/$', TagCloud.as_view(), name='tag_cloud'),
     url(r'^tag/(?P<tag>[^/]+(?u))/$', NoteTOL.as_view(), name='tagged_object_list'),
+    url(r'^search/$', NoteSearch.as_view(), name='note_search'),
 ]

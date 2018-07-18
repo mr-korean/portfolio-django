@@ -7,6 +7,12 @@ from .models import Note
 from tagging.models import Tag, TaggedItem # 태그 관련 모델(설치해야 가능)
 from tagging.views import TaggedObjectList # 태그 관련 뷰(설치해야 가능)
 
+from django.views.generic.edit import FormView # 검색폼
+from blog.forms import NoteSearchForm # 자작 검색폼
+from django.db.models import Q # 검색용 Q 클래스
+from django.shortcuts import render # 검색용 단축 함수
+
+
 class NoteLV(ListView):
     model = Note
     template_name = 'blog/note_all.html'
@@ -46,3 +52,20 @@ class NoteTAV(TodayArchiveView):
     model = Note
     date_field = 'modify_date'
 
+class NoteSearch(FormView):
+    form_class = NoteSearchForm
+    template_name = 'blog/note_search.html'
+
+    def form_valid(self, form):
+        schWord = '%s' % self.request.POST['search_word']
+        # (아마도 템플릿의) POST 요청으로 온 값을 변수 schWord에 저장
+        note_list = Note.objects.filter(Q(title__icontains=schWord) | Q(slug__icontains=schWord) | Q(description__icontains=schWord) | Q(content__icontains=schWord)).distinct()
+        # 모델 Note를 schWord를 통해 샅샅이 뒤짐(icontains는 대소문자 가리지 않음)
+
+        context = {} # 템플릿에 넘겨줄 변수 context를 아래와 같이 정의함
+        context['form'] = form # form 객체를 변수 form에 저장
+        context['search_term'] = schWord # schWord의 값을 변수 search_term에 저장
+        context['object_list'] = note_list # 상동
+
+        return render(self.request, self.template_name, context)
+        # 위의 결과를 반환함(이게 없으니까 에러가 나지)

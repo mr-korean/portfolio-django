@@ -1,0 +1,26 @@
+{% extends "blog/base_blog.html" %}
+
+{% block title %}블로그 내 검색{% endblock %}
+
+{% block content_blog %}
+<h2>블로그 내 검색</h2>
+
+<form action="." method="post"> {% csrf_token %}
+    {{ form.as_table }}
+    <input type="submit" value="검색">
+</form>
+<br>
+<br>
+{% if object_list %}
+
+{% for post in object_list %}
+    <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+    {{ post.modify_date|date:"Y년 m월 d일" }}
+    <p>{{ post.description }}</p>
+{% endfor %}
+
+{% elif search_term %}
+    <b><i>{{ search_term }}(으)로 검색한 결과가 없습니다.</i></b>
+{% endif %}
+
+{% endblock content_blog %}
