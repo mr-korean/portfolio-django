@@ -65,7 +65,7 @@ function drawingCircle(x, y, radius, color, bgcolor) {
     this.spawn = function () {
         circle = screen.context;
         circle.beginPath();
-        circle.arc(x, y, radius, 0, 2 * Math.PI);
+        circle.arc(this.x, this.y, radius, 0, 2 * Math.PI);
         circle.fillStyle = color;
         circle.fill();
         circle.lineWidth = 5; // 바깥선 굵기
