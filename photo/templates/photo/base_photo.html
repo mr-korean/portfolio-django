@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}갤러리{% endblock title %}
+
+{% block extra_style %}
+{% load staticfiles  %}
+<link rel="stylesheet" href="{% static 'css/base-photo.css' %}" />
+{% endblock extra_style %}
+
+{% block content %}
+
+<a href="{% url 'photo:index' %}">갤러리 메인</a><br>
+
+{% block content_photo %}
+{% endblock content_photo %}
+
+{% endblock content %}

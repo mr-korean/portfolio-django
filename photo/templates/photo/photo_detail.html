@@ -1,0 +1,42 @@
+{% extends "photo/base_photo.html" %}
+{% block title %}사진 상세보기{% endblock title %}
+
+{% load staticfiles %}
+{% block extra_style %}
+{% static "photo/photo.css" %}
+{% endblock extra_style %}
+
+{% block content_photo %}
+<div id="content">
+
+    <h3>{{ object.title }}</h3>
+
+    <table class="photo-detail">
+        <tr>
+            <td>
+                <a href="{{ object.image.url }}">
+                    <img style="max-width: 100%" src="{{ object.image.url }}" alt="사진">
+                </a>
+            </td>
+
+            <td>
+                <ul>
+                    <li>사진 설명</li>
+                    {% if object.description %}
+                        <p>{{ object.description|linebreaks }}</p>
+                    {% else %}
+                        <p>(설명 없음)</p>
+                    {% endif %}
+                    <li>업로드 날짜</li>
+                        <p>{{ object.upload_date }}</p>
+                    <li>갤러리 이름</li>
+                        <p>
+                            <a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a>
+                        </p>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+</div>
+{% endblock content_photo %}

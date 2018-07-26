@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'tagging.apps.TaggingConfig', #태그(교재 p.157)
     'disqus', #댓글(교재 p.187)
     'django.contrib.sites', #댓글(교재 p.187)
+    'photo.apps.PhotoConfig', #사진(교재 p.207)
 ]
 
 DISQUS_WEBSITE_SHORTNAME = 'mrkorean89'
@@ -135,3 +136,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 LOGIN_REDIRECT_URL = '/'
+
+# 사진 앱과 관련하여, 업로드 경로(p.208)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -16,6 +16,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import include, url
+from django.conf.urls.static import static #사진 앱(p.216)
+from django.conf import settings #사진 앱(p.216)
+
 from django.contrib import admin
 from django.contrib.auth import views
 from mysite.views import HomeView, UserRegisterView, UserRegisterDoneView, validate_username
@@ -40,4 +43,6 @@ urlpatterns = [
     url(r'^board/', include('board.urls', namespace='board')),
     url(r'^game/', include('game.urls', namespace='game')),
     url(r'^quote/', include('quote.urls', namespace='quote')),
-]
+    url(r'^photo/', include('photo.urls', namespace='photo')),
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+# static 함수가 반환하는 URL 패턴도 추가
