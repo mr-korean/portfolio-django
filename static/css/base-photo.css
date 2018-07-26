@@ -6,20 +6,20 @@ div.album-list {
 
 div.album-list-photo {
     float: left;
-    width: 150px;
-    height: 180px;
+    width: 180px;
+    height: 200px;
 }
 
 /* album_detail.html */
 
 div.album-detail {
-    margin: 30px 10px;
+    margin: 20px 50px;
 }
 
 div.album-detail-photo {
     float: left;
-    width: 220px;
-    height: 220px;
+    width: 180px;
+    height: 200px;
 }
 
 div.album-detail-photo > li {
@@ -31,7 +31,7 @@ div.album-detail-photo > li {
 /* photo_detail.html */
 
 table.photo-detail {
-    margin: 30px 50px 0 50px;
+    margin: 30px 50px;
     border: 1px solid #ccc;
     padding: 20px 20px;
 }
@@ -44,16 +44,19 @@ table.photo-detail ul li {
     font-weight: bold;
 }
 
-table.photo-detail ul p {
-    font-style: italic;
-}
-
 /* 공통 */
 
-img.thumbnail {
-    border: 3px solid #ccc;
+hr {
+    margin-right: 10px;
 }
 
-div.clear_float {
+.thumbnail {
+    border: 3px solid black;
+    margin: 0 10px;
+}
+
+.clearfix::after {
+    content: "";
     clear: both;
+    display: table;
 }

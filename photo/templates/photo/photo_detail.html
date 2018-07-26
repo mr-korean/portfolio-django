@@ -1,17 +1,14 @@
 {% extends "photo/base_photo.html" %}
 {% block title %}사진 상세보기{% endblock title %}
 
-{% load staticfiles %}
-{% block extra_style %}
-{% static "photo/photo.css" %}
-{% endblock extra_style %}
-
 {% block content_photo %}
-<div id="content">
 
-    <h3>{{ object.title }}</h3>
+<hr style="border: 1px solid black;">
+    <h2>
+        <b>{{ object.title }}</b>
+    </h2>
 
-    <table class="photo-detail">
+    <table class="photo-detail clearfix">
         <tr>
             <td>
                 <a href="{{ object.image.url }}">
@@ -37,6 +34,5 @@
             </td>
         </tr>
     </table>
-
-</div>
+<hr style="border: 1px solid black;">
 {% endblock content_photo %}

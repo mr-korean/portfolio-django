@@ -33,7 +33,8 @@ class ThumbnailImageFieldFile(ImageFieldFile):
         background.paste(
             img, ( int((size[0] - img.size[0]) / 2), int((size[1] - img.size[1]) / 2) )
         )
-        background.save(self.thumb_path, 'JPEG')
+        changed = background.convert('RGB')
+        changed.save(self.thumb_path, 'JPEG')
 
     def delete(self, save = True):
         if os.path.exists(self.thumb_path):

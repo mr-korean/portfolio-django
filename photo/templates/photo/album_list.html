@@ -1,30 +1,38 @@
 {% extends "photo/base_photo.html" %}
 {% block title %}갤러리 목록{% endblock title %}
 
-{% load staticfiles %}
-{% block extra_style %}
-{% static "photo/photo.css" %}
-{% endblock extra_style %}
-
 {% block content_photo %}
-<div id="content">
 
     {% for item in object_list %}
-    <div class="clear_float">
-        <h3 style="display: inline"><a href="{% url 'photo:album_detail' item.id %}">{{ item.name }}</a></h3>
-        &emsp;<b><i>{{ item.description }}</i></b>
-    </div>
 
-    <div class="album-list">
-        {% for photo in item.photo_set.all|slice:":5" %}
-        <div class="album-list-photo">
-            <a href="{{ photo.get_absolute_url }}">
-                <img class="thumbnail" src="{{ photo.image.thumb_url }}" alt="각 이미지">
-            </a>
+    <div class="clearfix" style="padding-bottom: 20px;">
+        <div>
+            <hr style="border: 1px solid black;">
+            <h2 style="display: inline">
+                <a href="{% url 'photo:album_detail' item.id %}"><b>{{ item.name }}</b></a>
+            </h2>
+            <span style="font-size: 16px; font-weight: bold;">
+                {{ item.description }}
+            </span>
         </div>
-        {% endfor %}
+
+
+        <div class="album-list">
+            {% for photo in item.photo_set.all|slice:":5" %}
+            <div class="album-list-photo">
+                <a class="thumbnail" href="{{ photo.get_absolute_url }}">
+                    <img src="{{ photo.image.thumb_url }}">
+                    <br>
+                    <p style="text-align: center;">{{ photo.title }}
+                        <br>
+                        {{ photo.upload_date|date:"Y-m-d" }}
+                    </p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
+    
     {% endfor %}
 
-</div>
 {% endblock content_photo %}
