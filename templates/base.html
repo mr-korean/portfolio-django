@@ -66,6 +66,9 @@
                 <li>
                     <a href="{% url 'game:leaderboard' %}">JS점수판</a>
                 </li>
+                <li>
+                    <a href="{% url 'bookmark:index' %}">북마크</a>
+                </li>
             </ul>
             <ul id="ul-account">
                 {% if user.is_active %}

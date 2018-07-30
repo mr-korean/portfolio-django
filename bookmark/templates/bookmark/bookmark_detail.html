@@ -1,0 +1,14 @@
+{% extends "bookmark/base_bookmark.html" %}
+
+{% block content_bookmark %}
+
+<div>
+    <h3>{{ object.title }}</h3>
+    <ul>
+        <li>
+            URL : <a href="{{ object.url }}">{{ object.url }}</a>
+        </li>
+    </ul>
+</div>
+
+{% endblock content_bookmark %}

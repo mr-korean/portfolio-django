@@ -1,0 +1,14 @@
+{% extends "bookmark/base_bookmark.html" %}
+
+{% block content_bookmark %}
+
+<div>
+    <h1>북마크 목록</h1>
+    <ul>
+        {% for bookmark in object_list %}
+            <li><a href="{% url 'bookmark:detail' bookmark.id %}">{{ bookmark }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content_bookmark %}

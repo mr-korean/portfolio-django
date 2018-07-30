@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'disqus', #댓글(교재 p.187)
     'django.contrib.sites', #댓글(교재 p.187)
     'photo.apps.PhotoConfig', #사진(교재 p.207)
+    'bookmark.apps.BookmarkConfig', #북마크(교재 p.44)
 ]
 
 DISQUS_WEBSITE_SHORTNAME = 'mrkorean89'

@@ -26,6 +26,7 @@ from game import urls
 from blog import urls
 from board import urls
 from quote import urls
+from bookmark import urls
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
@@ -44,5 +45,6 @@ urlpatterns = [
     url(r'^game/', include('game.urls', namespace='game')),
     url(r'^quote/', include('quote.urls', namespace='quote')),
     url(r'^photo/', include('photo.urls', namespace='photo')),
+    url(r'^bookmark/', include('bookmark.urls', namespace='bookmark')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # static 함수가 반환하는 URL 패턴도 추가

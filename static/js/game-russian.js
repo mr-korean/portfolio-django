@@ -39,7 +39,8 @@ function gameReady() {
     bullet3 = new drawingCircle(250, 286.6, 25, "yellow", "olive");
     bullet4 = new drawingCircle(150, 286.6, 25, "yellow", "olive");
     bullet5 = new drawingCircle(100, 200, 25, "yellow", "olive");
-    bullet6 = new drawingCircle(150, 113.4, 25, "black", "dimgray");
+    bullet6 = new drawingCircle(150, 113.4, 25, "yellow", "olive");
+    // 발사한 총알은 black, dimgray로 색깔 변경
     screen.wipeScreen();
     score.text = "점수: " + gameData.score;
     highscore.text = "최고점수: " + gameData.highscore;
@@ -66,10 +67,10 @@ function drawingCircle(x, y, radius, color, bgcolor) {
         circle = screen.context;
         circle.beginPath();
         circle.arc(this.x, this.y, radius, 0, 2 * Math.PI);
-        circle.fillStyle = color;
+        circle.fillStyle = this.color;
         circle.fill();
         circle.lineWidth = 5; // 바깥선 굵기
-        circle.strokeStyle = bgcolor;
+        circle.strokeStyle = this.bgcolor;
         circle.stroke();
     }
 
@@ -122,7 +123,7 @@ function rollMagazine() {
     document.getElementById("message-russian").innerHTML = "탄창 돌리는 중...";
     // makeInterval = setInterval(checkPattern, 8);
     rollCount = 0;
-    rollLimit = 39;
+    rollLimit = 4; // 정식 버전 = 40
     var waitCounter;
     rollSet();
 
@@ -136,7 +137,9 @@ function rollMagazine() {
             console.log("탄창 돌리기 " + rollCount + "회 실시");
         }
         else {
-            // 발사, 넘기기, 포기 선택지 등장
+            document.getElementById("russian-shoot").style.visibility = "visible";
+            document.getElementById("russian-pass").style.visibility = "visible";
+            document.getElementById("russian-drop").style.visibility = "visible";
         }
     }
 }
@@ -212,19 +215,26 @@ function randomSelect() {
 }
 
 function selectShoot() {
-    if (revolver[0] == "n")
-    {
-        console.log("당신은 살았습니다!");
-        revolver.splice(0, 1);
-    }
-    else if (revolver[0] == "y")
-    {
-        console.log("BANG!!! 당신은 죽었습니다!");
-        console.log("GAME OVER");
+    document.getElementById("message-russian").innerHTML = "과연 결과는...?";
+    setTimeout(checkShoot, 3000);
+    function checkShoot() {
+        if (revolver[0] == "n")
+        {
+            console.log("축하합니다! 당신은 살았습니다!");
+            usedBullet();
+            revolver.splice(0, 1);
+        }
+        else if (revolver[0] == "y")
+        {
+            usedBullet();
+            console.log("BANG!!! 당신은 죽었습니다!");
+            console.log("GAME OVER");
+        }
     }
 }
 
 function selectPass() {
+    document.getElementById("message-russian").innerHTML = "다음 총알로 넘어갑니다.";
     var movedBullet = revolver[0];
     revolver.splice(0, 1);
     revolver.splice(6, 0, movedBullet);
@@ -249,6 +259,71 @@ function selectDrop() {
     // 성공하면 점수 획득, 실패하면 총알 위치를 알려준 후 게임 오버
 }
 
+function usedBullet() {
+    switch (revolver.length) {
+        case 6:
+            bullet1.color = "black";
+            bullet1.bgcolor = "dimgray";
+            updateScreen();
+            break;
+        case 5:
+            bullet1.color = "black";
+            bullet1.bgcolor = "dimgray";
+            bullet2.color = "black";
+            bullet2.bgcolor = "dimgray";
+            updateScreen();
+            break;
+        case 4:
+            bullet1.color = "black";
+            bullet1.bgcolor = "dimgray";
+            bullet2.color = "black";
+            bullet2.bgcolor = "dimgray";
+            bullet3.color = "black";
+            bullet3.bgcolor = "dimgray";
+            updateScreen();
+            break;
+        case 3:
+            bullet1.color = "black";
+            bullet1.bgcolor = "dimgray";
+            bullet2.color = "black";
+            bullet2.bgcolor = "dimgray";
+            bullet3.color = "black";
+            bullet3.bgcolor = "dimgray";
+            bullet4.color = "black";
+            bullet4.bgcolor = "dimgray";
+            updateScreen();
+            break;
+        case 2:
+            bullet1.color = "black";
+            bullet1.bgcolor = "dimgray";
+            bullet2.color = "black";
+            bullet2.bgcolor = "dimgray";
+            bullet3.color = "black";
+            bullet3.bgcolor = "dimgray";
+            bullet4.color = "black";
+            bullet4.bgcolor = "dimgray";
+            bullet5.color = "black";
+            bullet5.bgcolor = "dimgray";
+            updateScreen();
+            break;
+        case 1:
+            bullet1.color = "black";
+            bullet1.bgcolor = "dimgray";
+            bullet2.color = "black";
+            bullet2.bgcolor = "dimgray";
+            bullet3.color = "black";
+            bullet3.bgcolor = "dimgray";
+            bullet4.color = "black";
+            bullet4.bgcolor = "dimgray";
+            bullet5.color = "black";
+            bullet5.bgcolor = "dimgray";
+            bullet6.color = "black";
+            bullet6.bgcolor = "dimgray";
+            updateScreen();
+            break;
+    }
+}
+
 // ↑ 실제 게임 함수
 // ======================================================
 // ↓ 점수 관련
@@ -257,6 +332,7 @@ function clearScore() {
     if (window.confirm("현재 점수를 초기화하시겠습니까?")) {
         gameData.score = 0;
         updateScreen();
-        score.respawn();
+        score.spawn();
+        highscore.spawn();
     }
 }
