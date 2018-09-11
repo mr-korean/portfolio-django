@@ -3,6 +3,11 @@
 {% block extra_style %}
 {% load staticfiles %}
 <link rel="stylesheet" href="{% static 'css/game-default.css' %}">
+<style>
+    #russian-shoot {top: 270px; left: 20px;}
+    #russian-pass  {top: 270px; left: 160px;}
+    #russian-drop  {top: 270px; left: 295px;}
+</style>
 {% endblock extra_style %}
 
 {% block upperjs %}
@@ -13,13 +18,13 @@
 <div>
     <div class="box-game">
         <div id="canvas-russian"></div>
-        <span class="game-start" id="start-russian" onclick="gameStart()">시작</span>
-        <span class="chooseMe" id="russian-shoot" onclick="selectShoot()">SHOOT</span>
-        <span class="chooseMe" id="russian-pass" onclick="selectPass()">PASS</span>
-        <span class="chooseMe" id="russian-drop" onclick="selectDrop()">DROP</span>
-        <span class="game-clearScore" onclick="clearScore()">점수지우기</span>
+        <span class="game-button game-start" id="start-russian" onclick="gameStart()">시작</span>
+        <span class="game-button" id="russian-shoot" onclick="selectShoot()">SHOOT</span>
+        <span class="game-button" id="russian-pass" onclick="selectPass()">PASS</span>
+        <span class="game-button" id="russian-drop" onclick="selectDrop()">DROP</span>
+        <span class="game-button game-clearScore" onclick="clearScore()">점수지우기</span>
         <p class="box-message" id="message-russian">준비중입니다.</p>
-        <p class="box-message">(로그인하지 않으면 점수가 저장되지 않습니다.)</p>
+        <p class="box-message">(점수는 로그인을 하셔야 저장됩니다.)</p>
     </div>
 </div>
 {% endblock content_game %}

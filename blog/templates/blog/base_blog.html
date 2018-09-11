@@ -10,4 +10,9 @@
 {% block content_blog %}
 {% endblock content_blog %}
 
+<ul>
+    <li><a href="{% url 'blog:note_add' %}">블로그 추가</a></li>
+    <li><a href="{% url 'blog:note_change' %}">내가 작성한 블로그 목록</a></li>
+</ul>
+
 {% endblock content %}

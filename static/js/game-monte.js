@@ -33,6 +33,9 @@ function gameReady() {
     highscore.text = "최고점수: " + gameData.highscore;
     score.respawn();
     highscore.respawn();
+    document.getElementById("monteButton-1").style.visibility = "hidden";
+    document.getElementById("monteButton-2").style.visibility = "hidden";
+    document.getElementById("monteButton-3").style.visibility = "hidden";
 };
 
 var screen = {
@@ -98,6 +101,9 @@ function component(width, height, color, x, y, type) {
 
 // (2) "시작"을 누르면 야바위가 시작된다.
 function gameStart() {
+    document.getElementById("monteButton-1").style.visibility = "hidden";
+    document.getElementById("monteButton-2").style.visibility = "hidden";
+    document.getElementById("monteButton-3").style.visibility = "hidden";
     document.getElementById("start-monte").style.visibility = "hidden";
     randomAnswer(); // (3) 정답을 무작위로 선택한다.
     checkHiddenAnswer(); // (4) 정답을 빨간색으로 확인시킨다. (정답 확인 3초)
@@ -305,15 +311,15 @@ function youWrong() {
 }
 
 function gameReset() {
+    document.getElementById("monteButton-1").style.visibility = "hidden";
+    document.getElementById("monteButton-2").style.visibility = "hidden";
+    document.getElementById("monteButton-3").style.visibility = "hidden";
     if (gameData.score >= gameData.highscore) {
         gameData.highscore = gameData.score;
         HighscoreUpload();
     }
     scoreUpload();
     document.getElementById("start-monte").style.visibility = "visible";
-    document.getElementById("monteButton-1").style.visibility = "hidden";
-    document.getElementById("monteButton-2").style.visibility = "hidden";
-    document.getElementById("monteButton-3").style.visibility = "hidden";
     updateScreen();
 }
 

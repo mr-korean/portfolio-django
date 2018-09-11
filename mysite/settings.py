@@ -141,3 +141,6 @@ LOGIN_REDIRECT_URL = '/'
 # 사진 앱과 관련하여, 업로드 경로(p.208)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 인증 기능 관련 URL 설정(교재 p.238, 로그인과 로그아웃은 교재와 같음)
+LOGIN_REDIRECT_URL = '/'

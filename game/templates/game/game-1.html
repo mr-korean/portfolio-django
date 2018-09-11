@@ -4,11 +4,9 @@
 {% load staticfiles %}
 <link rel="stylesheet" href="{% static 'css/game-default.css' %}">
 <style>
-    .chooseMe {top: 270px; visibility: hidden;}
-
-    #monteButton-1 {left: 73px;}
-    #monteButton-2 {left: 173px;}
-    #monteButton-3 {left: 273px;}
+    #monteButton-1 {top: 270px; left: 73px;}
+    #monteButton-2 {top: 270px; left: 173px;}
+    #monteButton-3 {top: 270px; left: 273px;}
 </style>
 {% endblock extra_style %}
 
@@ -21,12 +19,12 @@
     <div class="box-game">
         <div id="canvas-monte"></div>
         <span class="game-button game-start" id="start-monte" onclick="gameStart()">시작</span>
-        <span class="game-button chooseMe" id="monteButton-1" onclick="choose1()">1</span>
-        <span class="game-button chooseMe" id="monteButton-2" onclick="choose2()">2</span>
-        <span class="game-button chooseMe" id="monteButton-3" onclick="choose3()">3</span>
+        <span class="game-button" id="monteButton-1" onclick="choose1()">1</span>
+        <span class="game-button" id="monteButton-2" onclick="choose2()">2</span>
+        <span class="game-button" id="monteButton-3" onclick="choose3()">3</span>
         <span class="game-button game-clearScore" onclick="clearScore()">점수지우기</span>
     <p class="box-message" id="message-monte">'시작' 버튼을 눌러주세요.</p>
-    <p class="box-message">(로그인하지 않으면 점수가 저장되지 않습니다.)</p>
+    <p class="box-message">(점수는 로그인을 하셔야 저장됩니다.)</p>
     </div>
 </div>
 {% endblock content_game %}

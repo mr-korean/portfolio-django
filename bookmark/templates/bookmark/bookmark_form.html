@@ -1,0 +1,42 @@
+{% extends "bookmark/base_bookmark.html" %}
+{% block title %}북마크 양식{% endblock %}
+
+{% block content_bookmark %}
+
+<div>
+    <h3>북마크 추가/수정</h3>
+
+    <form action="." method="post">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <p class="errornote">오류가 발생했습니다! 아래에서 오류를 수정해 주십시오.</p>
+        {% endif %}
+
+        <p>북마크를 추가하거나 수정합니다.</p>
+        <fieldset class="aligned">
+            <div class="form-group">
+                {{ form.title.label_tag }} {{ form.title }}
+            </div>
+            <div class="form-group">
+                {{ form.url.label_tag }} {{ form.url }}
+            </div>
+            <div class="form-group">
+                    {{ form.info.label_tag }} {{ form.info }}
+            </div>
+            <div class="form-group">
+                    {{ form.description.label_tag }} {{ form.description }}
+            </div>
+        </fieldset>
+
+        <div class="submit-row">
+            <input type="submit" value="저장">
+        </div>
+
+        <script>
+            document.getElementById('id_title').focus();
+        </script>
+    </form>
+</div>
+
+{% endblock content_bookmark %}

@@ -1,0 +1,30 @@
+{% extends "bookmark/base_bookmark.html" %}
+{% block title %}북마크 변경 목록{% endblock %}
+
+{% block content_bookmark %}
+
+<div>
+    <h3>북마크 변경 - {{ user }}</h3>
+
+    <table class="change-list">
+        <tr>
+            <th>제목</th>
+            <th>URL</th>
+            <th>작성자</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+
+        {% for item in object_list %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.url }}</td>
+            <td>{{ item.owner }}</td>
+            <td><a href="{% url 'bookmark:update' item.id %}">수정</a></td>
+            <td><a href="{% url 'bookmark:delete' item.id %}">삭제</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock content_bookmark %}

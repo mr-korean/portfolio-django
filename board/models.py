@@ -8,11 +8,11 @@ from django.urls import reverse
 
 class Post(models.Model):
     # auto_now_add와 auto_now의 사용법은 https://goo.gl/GKVaAa 에서 DateTimeField를 참고
-    title = models.CharField('제목', max_length=50)
-    content = models.TextField('내용', blank=True)
-    create_date = models.DateTimeField('생성일', auto_now_add=True)
-    modify_date = models.DateTimeField('수정일', auto_now=True)
-    owner = models.ForeignKey('auth.User', null=True)
+    title = models.CharField('제목', max_length = 50)
+    content = models.TextField('내용', blank = True)
+    create_date = models.DateTimeField('생성일', auto_now_add =True)
+    modify_date = models.DateTimeField('수정일', auto_now = True)
+    owner = models.ForeignKey('auth.User', null = True)
         
     class Meta:
         verbose_name = 'post'

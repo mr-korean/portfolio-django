@@ -1,7 +1,14 @@
 {% extends "base.html" %}
-{% block title %}{% endblock %}
+
+{% block title %}회원가입 완료{% endblock %}
+
+{% block extra_style %}
 {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock extra_style %}
+
 {% block content %}
 <div class="alert alert-success">회원가입에 성공했습니다.</div>
-<p><a href="{% url 'login' %}" style="color: black">로그인</a></p>
+
+<a href="{% url 'login' %}" style="color: black;"><button>로그인</button></a>
 {% endblock content %}

@@ -1,27 +1,29 @@
 {% extends "board/base_board.html" %}
 {% block title %}게시판{% endblock %}
 {% block content_board %}
-<p style="color: red;">※ 가급적이면 점수판처럼 표 형태로 만들 것.</p>
+<p style="color: red;">※ 보완중입니다.</p>
+<p style="color: red;">※ 블로그와 북마크에서 수정 및 삭제, 계정 연동을 완료했으므로, 그대로 참고해서 넣을 것</p>
 <div>
     <table>
         <tr>
             <th>번호</th>
             <th>제목</th>
             <th>작성자</th>
-            <th>날짜</th>
+            <th>작성일</th>
         </tr>
-{% for post in posts %}
-<tr>
-    <td>1</td>
-    <td><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
-    <!-- https://goo.gl/aw2sQW 내장 템플릿 태그와 필터 -->
-    <td>{{ post.owner }}</td>
-    <td>{{ post.modify_date|date:"Y-m-d"|lower }}</td>
-    {% if forloop.last == False %}
-    {% endif %}
-    </td>
-</tr>
-{% endfor %}
+
+        {% for post in posts %}
+        <tr>
+            <td>{{ post.id }}</td>
+            <td><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></td>
+            <!-- https://goo.gl/aw2sQW 내장 템플릿 태그와 필터 -->
+            <td>{{ post.owner }}</td>
+            <td>{{ post.modify_date|date:"Y년 m월 d일" }}</td>
+            {% if forloop.last == False %}
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
 </table>
 </div>
     {% if page_obj.has_previous %}

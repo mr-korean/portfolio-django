@@ -13,7 +13,7 @@
 
 .box-message {
     /* 게임 전용 메시지 */
-    padding: 10px 0;
+    padding: 10px;
     border: 1px solid dimgray;
     background-color: #303030;
     color: white;

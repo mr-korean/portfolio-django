@@ -4,6 +4,8 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from tagging.fields import TagField
+from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 class Note(models.Model):
     title = models.CharField('제목', max_length=50) # 관리 페이지에서 보여질 스트링은 한글 사용 가능 / CharField는 한 줄 전용
@@ -12,7 +14,8 @@ class Note(models.Model):
     content = models.TextField('내용') # TextField는 여러 줄 입력 가능
     create_date = models.DateTimeField('생성일', default=timezone.now)
     modify_date = models.DateTimeField('수정일', default=timezone.now)
-    tag = TagField() # 태그를 입력하는 칸(교재 p.158)
+    tag = TagField('태그') # 태그를 입력하는 칸(교재 p.158)
+    owner = models.ForeignKey(User, null = True)
 
     class Meta:
         verbose_name = 'note' # 테이블 별명(단수)
@@ -37,3 +40,8 @@ class Note(models.Model):
             return self.get_next_by_modify_date()
         except Note.DoesNotExist:
             return None        
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.title, allow_unicode = True)
+        super(Note, self).save(*args, **kwargs)

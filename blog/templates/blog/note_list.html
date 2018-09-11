@@ -5,8 +5,9 @@
 
 {% for note in notes %}
     <h3><a href="{{ note.get_absolute_url }}">{{ note.title }}</a></h3>
+    <p>작성자 : {{ note.owner }}</p>
     <p>{{ note.description }}</p>
-    <p>{{ note.modify_date|date:"수정일: Y년 m월 d일" }}</p>
+    <p>{{ note.modify_date|date:"최종수정일: Y년 m월 d일" }}</p>
 {% endfor %}
 <span style="color: red;">(본문 첫 줄을 보여줄 것. admin.py를 손대면 되려나?)</span>
 <br>

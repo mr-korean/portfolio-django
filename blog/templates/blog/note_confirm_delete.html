@@ -1,0 +1,16 @@
+{% extends "blog/base_blog.html" %}
+{% block title %}북마크 변경 목록{% endblock %}
+
+{% block content_blog %}
+
+<div>
+    <h3>블로그 삭제</h3>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>"{{ object }}"을(를) 삭제하시겠습니까?</p>
+        <input type="submit" value="확인">
+    </form>
+</div>
+
+{% endblock content_blog %}

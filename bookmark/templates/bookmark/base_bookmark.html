@@ -1,11 +1,16 @@
 {% extends "base.html" %}
-{% block title %}북마크 목록{% endblock %}
+{% block title %}북마크{% endblock %}
 
 {% block content %}
 
-※ 웹 개발 및 창작 활동에 도움이 되는 사이트 목록.
+<span style="font-weight:bold;">※ 웹 개발 및 창작 활동에 도움이 되는 사이트 목록.</span>
 
 {% block content_bookmark %}
 {% endblock content_bookmark %}
+
+<ul>
+    <li><a href="{% url 'bookmark:add' %}">북마크 추가</a></li>
+    <li><a href="{% url 'bookmark:change' %}">내가 작성한 북마크 목록</a></li>
+</ul>
 
 {% endblock content %}

@@ -1,25 +1,39 @@
-{% extends "base.html" %} {% block title %}{% endblock %} {% load staticfiles %}
+{% extends "base.html" %}
+
+{% block title %}회원가입{% endblock %}
+
+{% block extra_style %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock extra_style %}
+
 {% block content %}
-<h1>비밀번호 변경</h1>
-<form method="post" action="." data-validate-username-url="{% url 'validate_username' %}"> {% csrf_token %} {% if form.errors %}
+<h1>회원가입</h1>
+
+<form method="post" action="." data-validate-username-url="{% url 'validate_username' %}">
+    {% csrf_token %}
+    
+    {% if form.errors %}
     <div class="alert alert-danger">아래 입력내용을 다시 확인하세요.</div>
     {% endif %}
-    <p>이름과 비밀번호를 입력하세요.</p>
+
     <p>로그인에 사용할 아이디와 비밀번호를 입력하세요.</p>
+
     <div class="form-group">
-        <label>아이디:</label> <span style="color:black">{{ form.username }}</span>
+        <label>아이디:</label> {{ form.username }}
     </div>
     <div class="form-group">
-        <label>비밀번호:</label> <span style="color:black">{{ form.password1 }}</span>
+        <label>비밀번호:</label> {{ form.password1 }}
     </div>
     <div class="form-group">
-        <label>비밀번호 확인:</label> <span style="color:black">{{ form.password2 }}</span>
+        <label>비밀번호 확인:</label> {{ form.password2 }}
     </div>
     <div class="form-group">
-        <input type="submit" value="회원가입" style="color: black;">
+        <input type="submit" value="회원가입">
     </div>
 </form>
 {% endblock content %}
+
 {% block lowerjs %}
 <script>
     $("#id_username").change(function () {
@@ -40,6 +54,7 @@
             success: function (data) {
                 if (data.is_taken) {
                     alert(data.error_message);
+                    console.log("JSON 전송 오류.")
                 }
             }
         });

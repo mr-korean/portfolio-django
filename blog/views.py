@@ -12,10 +12,14 @@ from blog.forms import NoteSearchForm # 자작 검색폼
 from django.db.models import Q # 검색용 Q 클래스
 from django.shortcuts import render # 검색용 단축 함수
 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
+from mysite.views import LoginRequiredMixin
+
 
 class NoteLV(ListView):
     model = Note
-    template_name = 'blog/note_all.html'
+    template_name = 'blog/note_list.html'
     context_object_name = 'notes' # 템플릿에서 사용될 변수명
     paginate_by = 5 # 한 페이지에 보여주는 목록의 최대 개수
 
@@ -69,3 +73,28 @@ class NoteSearch(FormView):
 
         return render(self.request, self.template_name, context)
         # 위의 결과를 반환함(이게 없으니까 에러가 나지)
+
+class NoteCreate(LoginRequiredMixin, CreateView):
+    model = Note
+    fields = ['title', 'description', 'content', 'tag']
+    #initial = {'slug' : '자동으로-추가되므로-입력-금지'}
+    success_url = reverse_lazy('blog:index')
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super(NoteCreate, self).form_valid(form)
+
+class NoteChange(LoginRequiredMixin, ListView):
+    template_name = 'blog/note_change_list.html'
+
+    def get_queryset(self):
+        return Note.objects.filter(owner = self.request.user)
+
+class NoteUpdate(LoginRequiredMixin, UpdateView):
+    model = Note
+    fields = ['title', 'description', 'content', 'tag']
+    success_url = reverse_lazy('blog:index')
+
+class NoteDelete(LoginRequiredMixin, DeleteView):
+    model = Note
+    success_url = reverse_lazy('blog:index')

@@ -1,4 +1,4 @@
-var revolver, insert, currentTurn, bullets, rollCount, rollLimit, rollPattern, makeInterval;
+var revolver, insert, bullets, rollCount, rollLimit, rollPattern, makeInterval;
 
 // ↑ 공용 변수
 // ========================
@@ -22,10 +22,7 @@ var screen = {
 
 function gameReady() {
     // 사이트 로딩 완료 시 실행할 함수
-
-    // 실탄 선택
-    randomSelect();
-
+    
     // 캔버스 생성
     screen.makeScreen();
 
@@ -54,6 +51,9 @@ function gameReady() {
     score.spawn();
     highscore.spawn();
     rollPattern = "A";
+    document.getElementById("russian-shoot").style.visibility = "hidden";
+    document.getElementById("russian-pass").style.visibility = "hidden";
+    document.getElementById("russian-drop").style.visibility = "hidden";
 }
 
 function drawingCircle(x, y, radius, color, bgcolor) {
@@ -91,7 +91,7 @@ function component(width, height, color, x, y, type) {
         if (this.type == "text") // (텍스트일 경우)
         {
             icon.font = this.width + " " + this.height;
-            icon.fillStyle = color;
+            icon.fillStyle = this.color;
             icon.fillText(this.text, this.x, this.y);
         } else {
             icon.fillStyle = this.color;
@@ -109,6 +109,8 @@ function updateScreen() {
     bullet4.spawn();
     bullet5.spawn();
     bullet6.spawn();
+    score.text = "점수: " + gameData.score;
+    highscore.text = "최고점수: " + gameData.highscore;
     score.spawn();
     highscore.spawn();
     // 위치가 변경된 총알을 생성
@@ -117,7 +119,7 @@ function updateScreen() {
 
 // ↑ 게임 준비 함수
 // ======================================================
-// ↑ 탄창 돌기 연출
+// ↑ 탄창 관련 연출
 
 function rollMagazine() {
     document.getElementById("message-russian").innerHTML = "탄창 돌리는 중...";
@@ -137,6 +139,7 @@ function rollMagazine() {
             console.log("탄창 돌리기 " + rollCount + "회 실시");
         }
         else {
+            // 돌기 연출이 끝난 후, 선택지를 보여준다.
             document.getElementById("russian-shoot").style.visibility = "visible";
             document.getElementById("russian-pass").style.visibility = "visible";
             document.getElementById("russian-drop").style.visibility = "visible";
@@ -189,77 +192,7 @@ function patternB() {
     console.log("회전 패턴: B");
 }
 
-// ↑ 탄창 돌기 연출
-// ======================================================
-// ↓ 실제 게임 함수
-
-function gameStart() {
-    document.getElementById("start-russian").style.visibility = "hidden";
-    document.getElementById("russian-shoot").style.visibility = "hidden";
-    document.getElementById("russian-pass").style.visibility = "hidden";
-    document.getElementById("russian-drop").style.visibility = "hidden";
-    document.getElementById("message-russian").innerHTML = "게임을 시작합니다!";
-    setTimeout(rollMagazine, 2000);
-    // (1) 총알이 돌아가는 연출을 보여준다.
-    // (2) 연출이 끝나면 3가지 선택지를 띄운다.
-}
-
-function randomSelect() {
-    currentTurn = 0;
-    revolver = ["n", "n", "n", "n", "n", "n"];
-    var insert = Math.floor((Math.random() * 6)) // 0부터 5까지 (행렬을 쉽게 사용하기 위함)
-    revolver[insert] = 'y';
-    bullets = revolver.length;
-    console.log("총알 배치: " + revolver);
-    console.log("남은 탄창: " + bullets);
-}
-
-function selectShoot() {
-    document.getElementById("message-russian").innerHTML = "과연 결과는...?";
-    setTimeout(checkShoot, 3000);
-    function checkShoot() {
-        if (revolver[0] == "n")
-        {
-            console.log("축하합니다! 당신은 살았습니다!");
-            usedBullet();
-            revolver.splice(0, 1);
-        }
-        else if (revolver[0] == "y")
-        {
-            usedBullet();
-            console.log("BANG!!! 당신은 죽었습니다!");
-            console.log("GAME OVER");
-        }
-    }
-}
-
-function selectPass() {
-    document.getElementById("message-russian").innerHTML = "다음 총알로 넘어갑니다.";
-    var movedBullet = revolver[0];
-    revolver.splice(0, 1);
-    revolver.splice(6, 0, movedBullet);
-    console.log("총알 배치: " + revolver);
-    // 다음 탄창으로 넘어감.
-    // 발사와 원리가 같지만, 0번째 값을 삭제하진 않고 맨 뒤로 넘김
-    // 무조건 점수 -1점 처리.
-}
-
-function selectDrop() {
-    if (revolver[0] == "y")
-    {
-        console.log("총알이 있었습니다! 대단하시군요!");
-        console.log("GAME OVER");
-    }
-    else if (revolver[0] == "n")
-    {
-        console.log("총알이 없었습니다! 그래도 다행이군요!");
-        console.log("GAME OVER");
-    }
-    // 총알이 있을거라 예상하고 게임을 포기.
-    // 성공하면 점수 획득, 실패하면 총알 위치를 알려준 후 게임 오버
-}
-
-function usedBullet() {
+function bulletFiredEffect() {
     switch (revolver.length) {
         case 6:
             bullet1.color = "black";
@@ -322,6 +255,153 @@ function usedBullet() {
             updateScreen();
             break;
     }
+}
+
+// ↑ 탄창 관련 연출
+// ======================================================
+// ↓ 실제 게임 함수
+
+function gameStart() {
+    bullet1.color = "yellow";
+    bullet1.bgcolor = "olive";
+    bullet2.color = "yellow";
+    bullet2.bgcolor = "olive";
+    bullet3.color = "yellow";
+    bullet3.bgcolor = "olive";
+    bullet4.color = "yellow";
+    bullet4.bgcolor = "olive";
+    bullet5.color = "yellow";
+    bullet5.bgcolor = "olive";
+    bullet6.color = "yellow";
+    bullet6.bgcolor = "olive";
+    updateScreen();
+    document.getElementById("start-russian").style.visibility = "hidden";
+    document.getElementById("russian-shoot").style.visibility = "hidden";
+    document.getElementById("russian-pass").style.visibility = "hidden";
+    document.getElementById("russian-drop").style.visibility = "hidden";
+    document.getElementById("message-russian").innerHTML = "게임을 시작합니다!";
+    setTimeout(rollMagazine, 2000);
+    // (1) 총알이 돌아가는 연출을 보여준다.
+    // (2) 연출이 끝나면 3가지 선택지를 띄운다.
+}
+
+function randomSelect() {
+    revolver = ["n", "n", "n", "n", "n", "n"];
+    var insert = Math.floor((Math.random() * 6)) // 0부터 5까지 (행렬을 쉽게 사용하기 위함)
+    revolver[insert] = 'y';
+    bullets = revolver.length;
+    console.log("총알 배치: " + revolver);
+    console.log("남은 탄창: " + bullets);
+}
+
+function selectShoot() {
+    // 결과 확인을 위해 선택지를 다시 숨긴다.
+    document.getElementById("russian-shoot").style.visibility = "hidden";
+    document.getElementById("russian-pass").style.visibility = "hidden";
+    document.getElementById("russian-drop").style.visibility = "hidden";
+    // 결과를 볼 때까지 일부러 뜸을 들인다.
+    document.getElementById("message-russian").innerHTML = "과연 결과는...?";
+    setTimeout(checkShoot, 3000);
+    function checkShoot() {
+        if (revolver[0] == "n")
+        {
+            // 캔버스에 "*CLICK*"이라는 큰 글자를 파란색으로 표시('철컥'이라는 영어 표현)
+            document.getElementById("message-russian").innerHTML = "축하합니다! 생존하셨습니다!";
+            document.getElementById("russian-shoot").style.visibility = "visible";
+            document.getElementById("russian-pass").style.visibility = "visible";
+            document.getElementById("russian-drop").style.visibility = "visible";
+            bulletFiredEffect();
+            shootWin();
+            updateScreen();
+            revolver.splice(0, 1);
+        }
+        else if (revolver[0] == "y")
+        {
+            // 캔버스에 "BANG!!!"이라는 큰 글자를 빨간색으로 표시('빵!'이라는 영어 표현)
+            document.getElementById("message-russian").innerHTML = "BANG!!! 사망하셨습니다!<br>GAME OVER";
+            document.getElementById("start-russian").style.visibility = "visible";
+            bulletFiredEffect();
+            shootLose();
+            updateScreen();
+        }
+    }
+}
+
+function shootWin() {
+    switch (revolver.length) {
+        case 6:
+            gameData.score += 1;
+            gameData.highscore += 1;
+            break;
+        case 5:
+            gameData.score += 2;
+            gameData.highscore += 2;
+            break;
+        case 4:
+            gameData.score += 3;
+            gameData.highscore += 3;
+            break;
+        case 3:
+            gameData.score += 4;
+            gameData.highscore += 4;
+            break;
+        case 2:
+            gameData.score += 5;
+            gameData.highscore += 5;
+            break;
+        case 1:
+            gameData.score += 6;
+            gameData.highscore += 6;
+            break;
+    }
+}
+
+function shootLose() {
+    switch (revolver.length) {
+        case 6:
+            gameData.score -= 2;
+            break;
+        case 5:
+            gameData.score -= 3;
+            break;
+        case 4:
+            gameData.score -= 4;
+            break;
+        case 3:
+            gameData.score -= 5;
+            break;
+        case 2:
+            gameData.score -= 6;
+            break;
+        case 1:
+            gameData.score -= 7;
+            break;
+    }
+}
+
+function selectPass() {
+    document.getElementById("message-russian").innerHTML = "다음 총알로 넘어갔습니다.";
+    var movedBullet = revolver[0];
+    revolver.splice(0, 1);
+    revolver.splice(6, 0, movedBullet);
+    gameData.score -= 1;
+    updateScreen();
+    console.log("총알 배치: " + revolver);
+}
+
+function selectDrop() {
+    if (revolver[0] == "y")
+    {
+        console.log("총알이 있었습니다! 대단하시군요!");
+        console.log("GAME OVER");
+    }
+    else if (revolver[0] == "n")
+    {
+        console.log("총알이 없었습니다! 그래도 다행이군요!");
+        console.log("GAME OVER");
+    }
+    // 총알이 있을거라 예상하고 게임을 포기.
+    // 성공하면 점수 획득, 실패하면 총알 위치를 알려준 후 게임 오버
 }
 
 // ↑ 실제 게임 함수

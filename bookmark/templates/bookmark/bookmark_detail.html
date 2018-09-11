@@ -1,14 +1,12 @@
 {% extends "bookmark/base_bookmark.html" %}
+{% block title %}북마크 정보{% endblock %}
 
 {% block content_bookmark %}
 
 <div>
     <h3>{{ object.title }}</h3>
-    <ul>
-        <li>
-            URL : <a href="{{ object.url }}">{{ object.url }}</a>
-        </li>
-    </ul>
+    <p>{{ object.description }}</p>
+    <p>주소 : <a href="{{ object.url }}">{{ object.url }}</a></p>
 </div>
 
 {% endblock content_bookmark %}

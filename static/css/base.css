@@ -21,7 +21,7 @@ body {
 /* 페이지 최상단 배너 */
 
 header {
-    height: 175px;
+    height: 200px;
     position: relative;
 }
 
@@ -82,6 +82,12 @@ header {
 
 #ul-account {
     float: right;
+}
+
+#notice-login {
+    position: absolute;
+    top: -45px;
+    right: 15px;
 }
 
 .nav-main ul li {
@@ -164,13 +170,4 @@ address {
     content: "";
     clear: both;
     display: table;
-}
-
-/* 사이트 대문 */
-#welcomeText {
-    height: 100%;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

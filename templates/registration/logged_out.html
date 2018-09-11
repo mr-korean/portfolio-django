@@ -1,9 +1,14 @@
 {% extends "base.html" %}
-{% block title %}{% endblock %}
+{% block title %}로그아웃 성공{% endblock %}
+
+{% block extra_style %}
 {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock extra_style %}
+
 {% block content %}
 <div class="alert alert-success">
     안전하게 로그아웃되었습니다. 이용해 주셔서 감사합니다.
 </div>
-<p><a href="{% url 'login' %}" style="color:black;">다시 로그인</a></p>
+<a href="{% url 'login' %}" style="color: black;"><button>로그인</button></a>
 {% endblock content %}
